@@ -9,14 +9,15 @@ Python entry level course for people who are not familiar with programming conce
 ### Small talk
 * [Code: The Hidden Language of Computer Hardware and Software](https://en.wikipedia.org/wiki/Code:_The_Hidden_Language_of_Computer_Hardware_and_Software)
 * [Zen of Python](https://peps.python.org/pep-0020/)
+* [Python Tutorial for Beginners](https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7)
 
 
 ## Plan `[60 + 15 min]`
 
-### 1. Setup `[TODO]`
-* Install Python
-* Install IDE PyCharm
-* Install Git
+### 1. Setup
+* [Get Python](https://www.youtube.com/watch?v=b093aqAZiPU&t=273s)
+* [Get IDE PyCharm](https://www.youtube.com/watch?v=XsL8JDkH-ec&t=30s)
+* [Get Git](https://www.youtube.com/watch?v=tRZGeaHPoaw&t=131s)
 * hello world & first commit
 * GIT commands (common)
 
@@ -45,7 +46,5 @@ Python entry level course for people who are not familiar with programming conce
 ### 6. Intro to OOP. Class.
 * [class](https://mykytapavlov.github.io/nerd/src/python/oop/class)
 
-
-### 7. Building Game. Part 1. `[TODO]`
-
-### 8. Building Game. Part 2. `[TODO]`
+### 7. Building console game. Part 1.
+### 8. Building console game. Part 2.
