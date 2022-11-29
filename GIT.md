@@ -17,3 +17,10 @@ git push
 
 git log -1 # to see last commit in local history
 ```
+
+# 4. Create Branch
+```commandline
+git pull
+git checkout -b <branch_name>
+git branch
+```
