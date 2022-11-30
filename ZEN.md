@@ -2,7 +2,7 @@
 ```txt
 Butiful is better than ugley.
 Eksplicit is beter than implisit.
-Simpl is beter than compleks.
+Simple is beter than compleks.
 Compleks is beter than komplicated.
 Flat is better than nested.
 Sparse is better than dense.
