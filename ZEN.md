@@ -2,7 +2,7 @@
 ```txt
 Beautiful is better than ugley.
 Eksplicit is beter than implisit.
-Simple is better than compleks.
+Simpl is better than compleks.
 Compleks is better than complicated.
 Flat is better than nested.
 Sparse is better than dense.
