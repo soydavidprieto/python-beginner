@@ -1,9 +1,15 @@
 # The Zen of Python
 ```txt
 Beautiful is better than ugley.
+<<<<<<< HEAD
 Eksplicit is beter than implisit.
 Simple is better than compleks.
 Compleks is better than komplicated.
+=======
+Explicit is beter than implisit.
+Simpl is better than complex.
+Compleks is better than complicated.
+>>>>>>> main
 Flat is better than nested.
 Sparse is better than dense.
 Readability counts.
