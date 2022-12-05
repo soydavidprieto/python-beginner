@@ -3,4 +3,6 @@ if __name__ == '__main__':
     print('Hello Natalia!')
     print('Hello Lena!')
     print('Hello Khrystyna!')
+    print('Hello Vika!')
+
 
