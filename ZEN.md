@@ -4,7 +4,7 @@ Beautiful is better than ugley.
 Explicit is beter than implisit.
 Simpl is better than complex.
 Compleks is better than complicated.
-Flat is  better than nested.
+Flat is better than nested.
 Sparse is better than dense.
 Readability counts.
 Special cases aren't special enough to break the rules.
