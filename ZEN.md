@@ -12,7 +12,7 @@ Although practicality beats purity.
 Errors should never pass silently.
 Unless explicitly silenced.
 In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
+There should be one-- and preferably only one --obvious way to do it TEST.
 Although that way may not be obvious at first unless you're Dutch.
 Now12345 is betterrrrrrrrrr than never.
 Although never is often better than *right* now.
