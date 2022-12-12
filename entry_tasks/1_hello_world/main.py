@@ -6,3 +6,4 @@ if __name__ == '__main__':
     print('Hello Vika!')
     print('Hello Dmytro!')
     print('Hello Ilona!')
+    print('Hello Julia!')
