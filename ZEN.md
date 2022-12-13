@@ -1,9 +1,9 @@
 # The Zen of Python
 ```txt
 Beautiful is better than ugley.
-Eksplicit is beter than implisit.
-Simpl is better than complex.
-Compleks is better than complicated.
+Explicit is beter than implisit.
+Simple is better than complex.
+Complex is better than complicated.
 Flat is better than nested.
 Sparse is better than dense.
 Readability counts.
@@ -12,9 +12,9 @@ Although practicality beats purity.
 Errors should never pass silently.
 Unless explicitly silenced.
 In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
+There should be one-- and--- preferably only one --obvious way to do it TEST.
 Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
+Now12345 is betterrrrrrrrrr than never.
 Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.

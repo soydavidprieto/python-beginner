@@ -1,18 +1,27 @@
 # python-beginner
 Python entry level course for people who are not familiar with programming concepts
 
-## Introduction
-* About Me
-* About Course
-* About Guys
 
-### Small talk
+### Useful Links
+#### Books
 * [Code: The Hidden Language of Computer Hardware and Software](https://en.wikipedia.org/wiki/Code:_The_Hidden_Language_of_Computer_Hardware_and_Software)
-* [Zen of Python](https://peps.python.org/pep-0020/)
+
+#### Python
 * [Python Tutorial for Beginners](https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7)
+* [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI)
+
+#### GIT
+* [Git Squash](https://www.youtube.com/watch?v=V5KrD7CmO4o)
+* [Git Rebase vs Merge](https://www.youtube.com/watch?v=f1wnYdLEpgI)
+* [Learn how to rewrite Git history - Amend, Reword, Delete, Reorder, Squash and Split](https://www.youtube.com/watch?v=ElRzTuYln0M&list=RDCMUCpREcVgeyOjDIAFa8FQr9Dw&index=2)
 
 
 ## Plan
+
+## 0. Introduction
+* About Me
+* About Course
+* About Guys
 
 ### 1. Setup
 * [Get Python](https://www.youtube.com/watch?v=b093aqAZiPU&t=273s)
