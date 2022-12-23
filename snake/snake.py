@@ -23,9 +23,16 @@ class Board:
 
 
 class Snake:
-    def __init__(self, body: str = 'o', position: tuple = (1, 1)) -> None:
-        self.body = body
-        self.position = position
+    def __init__(self, symbol: str = 'o', position: tuple = (1, 1)) -> None:
+        self.symbol = symbol
+        self.body = [position]
+
+    def eat(self, position: tuple):
+        self.body.append(position)
+
+    def move(self, position: tuple):
+        self.body.append(position)
+        self.body.pop(0)
 
 
 class Game:
@@ -34,8 +41,24 @@ class Game:
         self.snake = Snake()
 
     def render(self):
-        i, j = self.snake.position
-        self.board.board[i][j] = self.snake.body[0]
+        apple = (1, 2)
+        self.snake.eat(apple)
+
+        apple = (2, 2)
+        self.snake.eat(apple)
+
+        apple = (2, 3)
+        self.snake.eat(apple)
+
+        apple = (2, 4)
+        self.snake.move(apple)
+
+        apple = (3, 4)
+        self.snake.move(apple)
+
+        for position in self.snake.body:
+            i, j = position
+            self.board.board[i][j] = self.snake.symbol
         self.board.show()
 
 
