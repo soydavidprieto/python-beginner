@@ -1,3 +1,4 @@
+import os
 from time import sleep
 
 
@@ -37,6 +38,22 @@ class Snake:
         self.body.append(position)
         self.body.pop(0)
 
+    def choices(self):
+        # next possible positions
+        i, j = self.body[-1]
+        positions = {(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1)}
+        return {p for p in positions if p not in self.body}
+
+
+class Apple:
+    def __init__(self, symbol: str = '$', position: tuple = (2, 2)):
+        self.position = position
+        self.symbol = symbol
+
+
+class GameOverError(Exception):
+    pass
+
 
 class Game:
     def __init__(self, width: int = 20, height: int = 20) -> None:
@@ -44,44 +61,86 @@ class Game:
         self.height = height
         self.board = Board(self.width, self.height)
         self.snake = Snake()
+        self.apple = Apple()
 
     def render(self):
         self.clear()
+
+        # render apple
+        i, j = self.apple.position
+        self.board.board[i][j] = self.apple.symbol
+
+        # render snake
         for position in self.snake.body:
             i, j = position
             self.board.board[i][j] = self.snake.symbol
+
         self.board.show()
+        sleep(2)
 
     def clear(self):
         self.board = Board(self.width, self.height)
+        # clear console
+        if os.name == 'nt':
+            # windows
+            os.system('cls')
+        else:
+            os.system('clear')
+
+    def init_apple(self):
+        last_position = self.apple.position if self.apple else None
+        for i in range(1, self.height - 1):
+            for j in range(1, self.width - 1):
+                if (i, j) not in self.snake.body:
+                    self.apple = Apple(position=(i, j))
+                    break
+        if last_position is None:
+            return
+        if last_position == self.apple.position:
+            raise GameOverError('No places for apple!')
 
     def play(self):
-        apple = (1, 2)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+        game_cycles = 5
+        try:
+            self.render()
+            while game_cycles > 0:
+                snake_i, snake_j = self.snake.body[-1]
 
-        apple = (2, 2)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+                next_move = None
+                for possible_move in self.snake.choices():
+                    if possible_move == self.apple.position:
+                        next_move = self.apple.position
+                        break
 
-        apple = (2, 3)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+                    i, j = possible_move
+                    if i == 0 or j in {0, self.width - 1}:
+                        # border
+                        continue
 
-        apple = (2, 4)
-        self.snake.move(apple)
-        self.render()
-        sleep(2)
+                    next_move = possible_move
+                    break
 
-        apple = (3, 4)
-        self.snake.move(apple)
-        self.render()
-        sleep(2)
+                if next_move is None:
+                    self.snake.move((snake_i + 1, snake_j + 1))
+                    self.render()
+                    GameOverError('No moves for snake!')
+
+                if next_move == self.apple.position:
+                    self.snake.eat(self.apple.position)
+                    self.render()
+                    self.init_apple()
+                    self.render()
+                    continue
+
+                self.snake.move(next_move)
+                self.render()
+                game_cycles -= 1
+
+        except GameOverError:
+            print('Game Over!')
 
 
 if __name__ == '__main__':
+    # TODO: run via terminal for proper rendering
     game = Game()
     game.play()
