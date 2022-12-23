@@ -23,43 +23,43 @@ if __name__ == "__main__":
         'Jeremy Renner': ['Mission Impossible']
     }
 
-    def search_by_genre():
-        all_genres = ", ".join(list(GENRES.keys()))
-        print(f"{'Available Genres: '} {all_genres}")
-        user_choose_gerne = input("Enter genre: ").strip()
-        if user_choose_gerne in GENRES:
-            movies_list = GENRES[user_choose_gerne]
-            print(f'Available movies: {movies_list}')
-            user_choose_film = input("Enter movie: ").strip()
-            if user_choose_film in GENRES[user_choose_gerne]:
-                print(f'Movie to watch: {user_choose_film}. Genre: {user_choose_gerne}.')
-            else:
-                print('Incorrect film name! Try again')
-        else:
-            print('Incorrect gerne! Try again')
 
-    def search_by_actor():
-        all_actors = ", ".join(list(ACTORS.keys()))
-        print(f"{'Available Actors: '} {all_actors}")
-        user_choose_actor = input("Enter actor: ").strip()
-        if user_choose_actor in ACTORS:
-            movies_list = ACTORS[user_choose_actor]
+    def search_by_genre_or_actor(search_type):
+        if search_type == "genre":
+            all_items = ", ".join(list(GENRES.keys()))
+            item_type = "genre"
+            items_dict = GENRES
+        elif search_type == "actor":
+            all_items = ", ".join(list(ACTORS.keys()))
+            item_type = "actor"
+            items_dict = ACTORS
+        else:
+            print("Incorrect search type. Please enter either 'genre' or 'actor'.")
+            return
+
+        print(f"{'Available '}{item_type.capitalize()}s: {all_items}")
+        user_choose_item = input(f"Enter {item_type}: ").strip()
+        if user_choose_item in items_dict:
+            movies_list = items_dict[user_choose_item]
             print(f'Available movies: {movies_list}')
             user_choose_movie = input('Enter movie: ').strip()
-            if user_choose_movie in ACTORS[user_choose_actor]:
-                print(f'Movie to watch: {user_choose_movie}. Starring: {user_choose_actor}.')
+            if user_choose_movie in items_dict[user_choose_item]:
+                print(
+                    f'Movie to watch: {user_choose_movie}. Starring: {user_choose_item}.' if search_type == "actor" else
+                    f'Movie to watch: {user_choose_movie}. Genre: {user_choose_item}.')
             else:
                 print('Incorrect movie name! Try again')
         else:
-            print('Incorrect actor name! Try again')
+            print(f'Incorrect {item_type} name! Try again')
+
 
     answer = input("Search by genre: ").strip()
     if answer == 'y':
-        search_by_genre()
+        search_by_genre_or_actor('genre')
     elif answer == 'n':
         actor = input("Search by actor: ").strip()
         if actor == 'y':
-            search_by_actor()
+            search_by_genre_or_actor('actor')
         elif answer == 'n':
             print('I really do not understand what you want!')
     else:
