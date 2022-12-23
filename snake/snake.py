@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Board:
     def __init__(self, width: int = 40, height: int = 20, border: str = '*') -> None:
         self.board = self.init_board(width, height, border)
@@ -36,32 +39,49 @@ class Snake:
 
 
 class Game:
-    def __init__(self) -> None:
-        self.board = Board(20, 20)
+    def __init__(self, width: int = 20, height: int = 20) -> None:
+        self.width = width
+        self.height = height
+        self.board = Board(self.width, self.height)
         self.snake = Snake()
 
     def render(self):
-        apple = (1, 2)
-        self.snake.eat(apple)
-
-        apple = (2, 2)
-        self.snake.eat(apple)
-
-        apple = (2, 3)
-        self.snake.eat(apple)
-
-        apple = (2, 4)
-        self.snake.move(apple)
-
-        apple = (3, 4)
-        self.snake.move(apple)
-
+        self.clear()
         for position in self.snake.body:
             i, j = position
             self.board.board[i][j] = self.snake.symbol
         self.board.show()
 
+    def clear(self):
+        self.board = Board(self.width, self.height)
+
+    def play(self):
+        apple = (1, 2)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 2)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 3)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 4)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
+        apple = (3, 4)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
 
 if __name__ == '__main__':
     game = Game()
-    game.render()
+    game.play()
