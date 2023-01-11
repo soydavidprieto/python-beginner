@@ -25,6 +25,12 @@ class Board:
         for row in self.board:
             print(' '.join(row))
 
+    @staticmethod
+    def distance(p1: tuple, p2: tuple):
+        p1_i, p1_j = p1
+        p2_i, p2_j = p2
+        return abs(pow((p2_i - p1_i) ** 2 + (p2_j - p1_j) ** 2, 0.5))
+
 
 class Snake:
     def __init__(self, symbol: str = 'o', position: tuple = (1, 1)) -> None:
@@ -32,17 +38,22 @@ class Snake:
         self.body = [position]
 
     def eat(self, position: tuple):
+        assert position, f'Snake needs something to eat!'
         self.body.append(position)
 
     def move(self, position: tuple):
+        assert position, f'Snake needs somewhere to move!'
         self.body.append(position)
         self.body.pop(0)
 
     def choices(self):
         # next possible positions
         i, j = self.body[-1]
-        positions = {(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1)}
-        return {p for p in positions if p not in self.body}
+        options = {(i + 1, j), (i, j + 1), (i - 1, j), (i, j - 1)}
+        positions = {p for p in options if p not in self.body}
+        if not positions:
+            raise GameOverError('Snake can\'t move further!')
+        return positions
 
 
 class Apple:
@@ -56,7 +67,7 @@ class GameOverError(Exception):
 
 
 class Game:
-    def __init__(self, width: int = 20, height: int = 20) -> None:
+    def __init__(self, width: int = 10, height: int = 10) -> None:
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
@@ -100,7 +111,7 @@ class Game:
             raise GameOverError('No places for apple!')
 
     def play(self):
-        game_cycles = 5
+        game_cycles = 150
         try:
             self.render()
             while game_cycles > 0:
@@ -113,17 +124,23 @@ class Game:
                         break
 
                     i, j = possible_move
-                    if i == 0 or j in {0, self.width - 1}:
+                    if i in {0, self.height - 1} or j in {0, self.width - 1}:
                         # border
                         continue
 
-                    next_move = possible_move
-                    break
+                    if next_move is None:
+                        next_move = possible_move
+                        continue
+
+                    d1 = self.board.distance(next_move, self.apple.position)
+                    d2 = self.board.distance(possible_move, self.apple.position)
+                    if d2 < d1:
+                        next_move = possible_move
 
                 if next_move is None:
                     self.snake.move((snake_i + 1, snake_j + 1))
                     self.render()
-                    GameOverError('No moves for snake!')
+                    raise GameOverError('No moves for snake!')
 
                 if next_move == self.apple.position:
                     self.snake.eat(self.apple.position)
@@ -136,8 +153,9 @@ class Game:
                 self.render()
                 game_cycles -= 1
 
-        except GameOverError:
+        except GameOverError as e:
             print('Game Over!')
+            print(e)
 
 
 if __name__ == '__main__':
