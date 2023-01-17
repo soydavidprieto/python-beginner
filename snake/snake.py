@@ -3,6 +3,19 @@ import random
 from time import sleep
 
 
+LOGO = """
+  ██████  ███▄    █  ▄▄▄       ██ ▄█▀▓█████ 
+▒██    ▒  ██ ▀█   █ ▒████▄     ██▄█▒ ▓█   ▀ 
+░ ▓██▄   ▓██  ▀█ ██▒▒██  ▀█▄  ▓███▄░ ▒███   
+  ▒   ██▒▓██▒  ▐▌██▒░██▄▄▄▄██ ▓██ █▄ ▒▓█  ▄ 
+▒██████▒▒▒██░   ▓██░ ▓█   ▓██▒▒██▒ █▄░▒████▒
+▒ ▒▓▒ ▒ ░░ ▒░   ▒ ▒  ▒▒   ▓▒█░▒ ▒▒ ▓▒░░ ▒░ ░
+░ ░▒  ░ ░░ ░░   ░ ▒░  ▒   ▒▒ ░░ ░▒ ▒░ ░ ░  ░
+░  ░  ░     ░   ░ ░   ░   ▒   ░ ░░ ░    ░   
+      ░           ░       ░  ░░  ░      ░  ░
+"""
+
+
 class Color:
     """
     ANSI Colors for terminal
@@ -47,10 +60,14 @@ class Board:
     def colored(symbol: str) -> str:
         if symbol == '*':
             return f'{Color.WARNING}{symbol}{Color.ENDC}'
-        elif symbol == '$':
+        elif symbol == '@':
             return f'{Color.FAIL}{symbol}{Color.ENDC}'
         elif symbol == 'o':
             return f'{Color.OKGREEN}{symbol}{Color.ENDC}'
+        elif symbol == '%':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
+        elif symbol == '^':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
         else:
             return symbol
 
@@ -62,9 +79,12 @@ class Board:
 
 
 class Snake:
-    def __init__(self, symbol: str = 'o', position: tuple = (1, 1)) -> None:
+    def __init__(self, symbol: str = 'o', position: tuple = (1, 1),
+                 head_symbol: str = '%', tail_symbol: str = '^') -> None:
         self.symbol = symbol
         self.body = [position]
+        self.head_symbol = head_symbol
+        self.tail_symbol = tail_symbol
 
     def eat(self, position: tuple):
         assert position, f'Snake needs something to eat!'
@@ -86,7 +106,7 @@ class Snake:
 
 
 class Apple:
-    def __init__(self, symbol: str = '$', position: tuple = (2, 2)):
+    def __init__(self, symbol: str = '@', position: tuple = (2, 2)):
         self.position = position
         self.symbol = symbol
 
@@ -111,12 +131,23 @@ class Game:
         self.board.board[i][j] = self.apple.symbol
 
         # render snake
-        for position in self.snake.body:
-            i, j = position
-            self.board.board[i][j] = self.snake.symbol
+        # -- render snake head
+        i, j = self.snake.body[-1]
+        self.board.board[i][j] = self.snake.head_symbol
+
+        # -- render snake tail
+        if len(self.snake.body) > 1:
+            i, j = self.snake.body[0]
+            self.board.board[i][j] = self.snake.tail_symbol
+
+        # -- render snake body
+        if len(self.snake.body) > 2:
+            for position in self.snake.body[1:-1]:
+                i, j = position
+                self.board.board[i][j] = self.snake.symbol
 
         self.board.show()
-        sleep(2)
+        sleep(1)
 
     def clear(self):
         self.board = Board(self.width, self.height)
@@ -143,12 +174,9 @@ class Game:
         self.apple = Apple(position=position)
 
     def play(self):
-        game_cycles = 150
         try:
             self.render()
-            while game_cycles > 0:
-                snake_i, snake_j = self.snake.body[-1]
-
+            while True:
                 next_move = None
                 for possible_move in self.snake.choices():
                     if possible_move == self.apple.position:
@@ -170,7 +198,6 @@ class Game:
                         next_move = possible_move
 
                 if next_move is None:
-                    self.snake.move((snake_i + 1, snake_j + 1))
                     self.render()
                     raise GameOverError('No moves for snake!')
 
@@ -183,7 +210,6 @@ class Game:
 
                 self.snake.move(next_move)
                 self.render()
-                game_cycles -= 1
 
         except GameOverError as e:
             print('Game Over!')
@@ -192,5 +218,13 @@ class Game:
 
 if __name__ == '__main__':
     # TODO: run via terminal for proper rendering
-    game = Game()
+    print(f'{Color.OKGREEN}{LOGO}{Color.ENDC}')
+    sleep(3)
+    game = Game(width=20, height=20)
     game.play()
+
+    # TODO:
+    # 1. Board: score, time taken
+    # 2. Shortest Path (Strategy) (Right now, it's shortest move (Tactic),
+    #    which leads to fail if there is no move after it)
+    # 3. Accept Input Move
