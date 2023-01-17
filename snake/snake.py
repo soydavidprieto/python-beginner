@@ -3,6 +3,22 @@ import random
 from time import sleep
 
 
+class Color:
+    """
+    ANSI Colors for terminal
+    """
+    HEADER: str = '\033[95m'
+    OKBLUE: str = '\033[94m'
+    OKCYAN: str = '\033[96m'
+    OKGREEN: str = '\033[92m'
+    WARNING: str = '\033[93m'
+    FAIL: str = '\033[91m'
+    ENDC: str = '\033[0m'
+    BOLD: str = '\033[1m'
+    UNDERLINE: str = '\033[4m'
+    PINK: str = '\033[38;5;206m'
+
+
 class Board:
     def __init__(self, width: int = 40, height: int = 20, border: str = '*') -> None:
         self.board = self.init_board(width, height, border)
@@ -24,7 +40,19 @@ class Board:
 
     def show(self):
         for row in self.board:
-            print(' '.join(row))
+            symbols = [self.colored(s) for s in row]
+            print(' '.join(symbols))
+
+    @staticmethod
+    def colored(symbol: str) -> str:
+        if symbol == '*':
+            return f'{Color.WARNING}{symbol}{Color.ENDC}'
+        elif symbol == '$':
+            return f'{Color.FAIL}{symbol}{Color.ENDC}'
+        elif symbol == 'o':
+            return f'{Color.OKGREEN}{symbol}{Color.ENDC}'
+        else:
+            return symbol
 
     @staticmethod
     def distance(p1: tuple, p2: tuple):
