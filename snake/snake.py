@@ -122,6 +122,7 @@ class Game:
         self.board = Board(self.width, self.height)
         self.snake = Snake()
         self.apple = Apple()
+        self.seconds_played = 0
 
     def render(self):
         self.clear()
@@ -147,6 +148,10 @@ class Game:
                 self.board.board[i][j] = self.snake.symbol
 
         self.board.show()
+
+        self.seconds_played += 1
+        print(f'{Color.HEADER}Snake size: {len(self.snake.body)}{Color.ENDC}')
+        print(f'{Color.UNDERLINE}Time played: {self.seconds_played}s{Color.ENDC}')
         sleep(1)
 
     def clear(self):
@@ -220,11 +225,10 @@ if __name__ == '__main__':
     # TODO: run via terminal for proper rendering
     print(f'{Color.OKGREEN}{LOGO}{Color.ENDC}')
     sleep(3)
-    game = Game(width=20, height=20)
+    game = Game(width=15, height=15)
     game.play()
 
     # TODO:
-    # 1. Board: score, time taken
-    # 2. Shortest Path (Strategy) (Right now, it's shortest move (Tactic),
+    # 1. Shortest Path (Strategy) (Right now, it's shortest move (Tactic),
     #    which leads to fail if there is no move after it)
-    # 3. Accept Input Move
+    # 2. Accept Input Move
