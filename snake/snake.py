@@ -1,4 +1,5 @@
 import os
+import random
 from time import sleep
 
 
@@ -67,7 +68,7 @@ class GameOverError(Exception):
 
 
 class Game:
-    def __init__(self, width: int = 10, height: int = 10) -> None:
+    def __init__(self, width: int = 5, height: int = 5) -> None:
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
@@ -99,16 +100,19 @@ class Game:
             os.system('clear')
 
     def init_apple(self):
-        last_position = self.apple.position if self.apple else None
+        last_position = self.apple.position
+        positions = []
         for i in range(1, self.height - 1):
             for j in range(1, self.width - 1):
                 if (i, j) not in self.snake.body:
-                    self.apple = Apple(position=(i, j))
-                    break
-        if last_position is None:
-            return
-        if last_position == self.apple.position:
+                    if (i, j) != last_position:
+                        positions.append((i, j))
+
+        if not positions:
             raise GameOverError('No places for apple!')
+
+        position = random.choices(positions)[0]
+        self.apple = Apple(position=position)
 
     def play(self):
         game_cycles = 150
