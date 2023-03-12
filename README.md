@@ -25,7 +25,7 @@ Python entry level course for people who are not familiar with programming conce
 
 ## Plan
 
-## 0. Introduction
+### 0. Introduction
 
 ### 1. Setup
 * [Get Python](https://www.youtube.com/watch?v=b093aqAZiPU&t=273s)
