@@ -3,25 +3,29 @@ Python entry level course for people who are not familiar with programming conce
 
 
 ### Useful Links
-#### Books
-* [Code: The Hidden Language of Computer Hardware and Software](https://en.wikipedia.org/wiki/Code:_The_Hidden_Language_of_Computer_Hardware_and_Software)
-
-#### Python
-* [Python Tutorial for Beginners](https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7)
-* [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI)
-
 #### GIT
 * [Git Squash](https://www.youtube.com/watch?v=V5KrD7CmO4o)
 * [Git Rebase vs Merge](https://www.youtube.com/watch?v=f1wnYdLEpgI)
 * [Learn how to rewrite Git history - Amend, Reword, Delete, Reorder, Squash and Split](https://www.youtube.com/watch?v=ElRzTuYln0M&list=RDCMUCpREcVgeyOjDIAFa8FQr9Dw&index=2)
 
+#### Python
+
+##### Beginner
+* [Python Tutorial for Beginners](https://www.youtube.com/watch?v=YYXdXT2l-Gg&list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7)
+* [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI)
+
+##### Junior
+* [Expert Python Programming: Master Python by learning the best coding practices and advanced programming concepts, 4th Edition](https://www.amazon.com/Expert-Python-Programming-practices-programming/dp/1801071101)
+* [Python Microservices Development: Build, test, deploy, and scale microservices in Python](https://www.amazon.com/Python-Microservices-Development-deploy-microservices/dp/1785881116)
+
+##### Junior+
+* [Fluent Python: Clear, Concise, and Effective Programming](https://www.amazon.com/Fluent-Python-Concise-Effective-Programming/dp/1491946008)
+* [Python Cookbook, Third Edition](https://www.amazon.com/Python-Cookbook-Third-David-Beazley/dp/1449340377)
+
 
 ## Plan
 
 ## 0. Introduction
-* About Me
-* About Course
-* About Guys
 
 ### 1. Setup
 * [Get Python](https://www.youtube.com/watch?v=b093aqAZiPU&t=273s)
