@@ -12,7 +12,7 @@ Python entry level course for people who are not familiar with programming conce
 * [Get IDE PyCharm](https://www.youtube.com/watch?v=XsL8JDkH-ec&t=30s)
 * [Git and GitHub for Beginners Tutorial](https://youtu.be/tRZGeaHPoaw)
 
-##### Homework
+##### 1.1 Homework
 * [hello_world](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/hello_world)
 * [user_input](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/user_input)
 
@@ -22,7 +22,7 @@ Python entry level course for people who are not familiar with programming conce
 * [String](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/string)
 * [Boolean](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/boolean)
 
-##### Homework
+##### 2.2 Homework
 * [sum_numbers](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/sum_numbers)
 * [exponent](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/exponent)
 * [string_size](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_size)
