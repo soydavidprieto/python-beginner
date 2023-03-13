@@ -12,7 +12,7 @@
    ```
 3. Commit your changes.
    ```shell
-   git add week_1/sum_numbers/sum_numbers.py
-   git commit -m "add program which sums two numbers"
+   git add week_1/exponent/exponent.py
+   git commit -m "add program which returns exponent of two numbers"
    git push
    ```

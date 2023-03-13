@@ -6,8 +6,8 @@
    ```
 2. Create python program which accepts user's input and prints it back to console in `user_input.py`.
    ```py
-   # use input function
-   word = input()
+   # use input() function
+   word = input('Enter something: ')
    ```
 3. Commit your changes.
    ```shell

@@ -12,11 +12,24 @@ Python entry level course for people who are not familiar with programming conce
 * [Get IDE PyCharm](https://www.youtube.com/watch?v=XsL8JDkH-ec&t=30s)
 * [Git and GitHub for Beginners Tutorial](https://youtu.be/tRZGeaHPoaw)
 
+##### Homework
+* [hello_world](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/hello_world)
+* [user_input](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/user_input)
+
 #### 2. Data Types. Part 1.
 * [Pointer](https://mykytapavlov.github.io/nerd/src/python/pointer)
 * [Numeric](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/numeric)
 * [String](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/string)
 * [Boolean](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/boolean)
+
+##### Homework
+* [sum_numbers](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/sum_numbers)
+* [exponent](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/exponent)
+* [string_size](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_size)
+* [string_words](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_words)
+* [string_slice](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_slice)
+* [greater](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/greater)
+* [contains](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/contains)
 
 ### Week 2.
 #### 3. Data Types. Part 2.
