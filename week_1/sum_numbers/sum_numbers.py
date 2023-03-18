@@ -17,7 +17,7 @@ while True:
             continue
         break
     exit = input("To to proceed, press any button, if you want to exit the program please press 'E', : ")
-    if exit == "E" or "e":
+    if exit == "E" or exit == "e":
         break
     else:
         continue
