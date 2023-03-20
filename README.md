@@ -12,7 +12,7 @@ Python entry level course for people who are not familiar with programming conce
 * [Get IDE PyCharm](https://www.youtube.com/watch?v=XsL8JDkH-ec&t=30s)
 * [Git and GitHub for Beginners Tutorial](https://youtu.be/tRZGeaHPoaw)
 
-##### 1.1 Homework
+##### 1.Homework
 * [hello_world](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/hello_world)
 * [user_input](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/user_input)
 
@@ -22,7 +22,7 @@ Python entry level course for people who are not familiar with programming conce
 * [String](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/string)
 * [Boolean](https://mykytapavlov.github.io/nerd/src/python/built-in-types/immutable/boolean)
 
-##### 2.2 Homework
+##### 2.1 Homework
 * [sum_numbers](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/sum_numbers)
 * [exponent](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/exponent)
 * [string_size](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_size)
@@ -30,6 +30,14 @@ Python entry level course for people who are not familiar with programming conce
 * [string_slice](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/string_slice)
 * [greater](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/greater)
 * [contains](https://github.com/mykytapavlov/python-beginner/tree/main/week_1/contains)
+
+##### 2.2 Homework
+* [sort_numbers](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/sort_numbers)
+* [each_third](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/each_third)
+* [equal_parts](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/equal_parts)
+* [coordinate](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/coordinate)
+* [contact](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/contact)
+* [unique](https://github.com/mykytapavlov/python-beginner/tree/main/week_2/unique)
 
 ### Week 2.
 #### 3. Data Types. Part 2.
