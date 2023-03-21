@@ -1,2 +1,3 @@
-if __name__ == '__main__':
-    print('Task 2. User`s input.')
+#task2
+w = input('Enter input: ')
+print(w)
