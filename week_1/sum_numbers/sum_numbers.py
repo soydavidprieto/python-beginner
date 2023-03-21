@@ -1,2 +1,6 @@
-if __name__ == '__main__':
-    print('Task 3. Sum numbers.')
+#Task3
+x = input('Enter number 1: ')
+y = input('Enter number 2: ')
+s = int(x)+int(y)
+print(s)
+
