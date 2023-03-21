@@ -1,2 +1,5 @@
-if __name__ == '__main__':
-    print('Task 4. Exponent.')
+#task4
+x = input('Enter number 1: ')
+y = input('Enter number 2: ')
+e = int(x) ** int(y)
+print (e)
