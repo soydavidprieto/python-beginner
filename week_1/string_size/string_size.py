@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print('Task 5. String size')
+#Task5
+x = input('Enter a string: ')
+print(len(x))
+
