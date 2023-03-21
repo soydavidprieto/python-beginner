@@ -1,2 +1,6 @@
-if __name__ == '__main__':
-    print('Task 6. String words')
+#Task6
+text = input('Enter text: ')
+words = text.split()
+print(words)
+
+
