@@ -8,4 +8,4 @@ letter = input('Enter letter: ')
 # Using magic methods (with double underscore) directly is sort of "dark magic",
 # which should not be used unless you absolutely there is no other way.
 # Extra useful reading (https://realpython.com/python-string-contains-substring/)
-print(word.__contains__(letter))
+print(letter in word)
