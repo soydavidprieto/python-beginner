@@ -1,2 +1,3 @@
-if __name__ == '__main__':
-    print('Task 7. String slice')
+s=input('Type s:' )
+result=slice(2,4)
+print(s[result])
