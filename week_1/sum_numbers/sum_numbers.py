@@ -1,5 +1,3 @@
-
-
 while True:
     while True:
         x = input("Please enter your first number: ")
