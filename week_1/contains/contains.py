@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print('Task 9. Contains?')
+name = input('Enter name:\n')
+letter = input('Enter letter: \n')
+result=name.__contains__(letter)
+print('Name contains this letter?',result)
