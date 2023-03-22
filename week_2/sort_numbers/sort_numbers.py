@@ -1,0 +1,5 @@
+input_number_string3 = input("Please enter your numbers: ")
+input_number_string3 = input_number_string3.replace(" ", "")
+numbers_list3 = input_number_string3.split(",")
+numbers_list3.sort()
+print(numbers_list3)
