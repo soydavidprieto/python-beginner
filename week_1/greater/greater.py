@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print('Task 8. Is greater?')
+x=int(input('x='))
+y=int(input('y='))
+result=y>x
+print('y>x is', result)
