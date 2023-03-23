@@ -14,4 +14,6 @@ while i < len(split_list):
 print('Result list', new_list)
 
 
-
+# [Mykyta]: Actually nice :)
+# (but the task was to get a bit more familiar with slices using step)
+# FYI, https://realpython.com/lessons/string-slicing/
