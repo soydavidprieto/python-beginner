@@ -6,9 +6,6 @@ while True:
         numbers = numbers.replace(" ", "")
         string_list = numbers.split(",")
         int_list = [eval(i) for i in string_list]
-        int_list.sort()
-        print(type(string_list[0]))
-        print(type(int_list[0]))
     elif " " in numbers:
         string_list = numbers.split()
         int_list = [eval(i) for i in string_list]
