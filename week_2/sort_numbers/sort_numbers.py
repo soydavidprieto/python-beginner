@@ -1,2 +1,3 @@
-if __name__ == '__main__':
-    print('Task 10. Sort numbers')
+sequence = list(input('Enter a sequence of characters:'))
+y=sorted(sequence)
+print(y)
