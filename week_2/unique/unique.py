@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print('Task 15. Unique.')
+sequence = list(input('Enter a sequence of characters:'))
+s=set(sequence)
+y=sorted(s)
+print(y)
