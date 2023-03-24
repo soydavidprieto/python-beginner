@@ -1,2 +1,3 @@
-if __name__ == '__main__':
-    print('Task 11. Each third')
+sequence = list(input('Enter a sequence of characters:'))
+my_list=sequence[::3]
+print("Every third element is:", my_list)
