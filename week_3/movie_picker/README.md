@@ -1,4 +1,4 @@
-# Task 15
+# Tasks 15-17
 Movie picker. Idea behind this task is to cover `if`, `while`, `for`. So there are 3 parts.
 Before you start, pull the latest changes first:
 
@@ -40,7 +40,8 @@ ACTORS = {
 }
 ```
 
-# Part 1. If statement.
+## Task 15
+### Part 1. If statement.
 Now, we start from a program which uses only `if` statement. 
 This is a simple program, which should ends, when user's input is wrong. 
 We are not covering repeats yet here.
@@ -73,7 +74,8 @@ git commit -m "movie_picker (task 15)"
 git push
 ```
 
-# Part 2. For loop.
+## Task 16
+### Part 2. For loop.
 Now, business have changed the requirements, they don't support `ACTORS` table anymore, but there is another table called `CAST` now.
 Business does not want users to see any changes (from console program perspective, everything should be the same). 
 Rework your program in order to use `CAST` instead of `ACTORS`.
@@ -143,7 +145,8 @@ git commit -m "movie_picker (task 16)"
 git push
 ```
 
-# Part 3. While loop.
+## Task 17
+### Part 3. While loop.
 Now, we want to NOT end our program, when user inputs wrong answers. 
 We want to handle repeats now.
 
