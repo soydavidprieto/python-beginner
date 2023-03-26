@@ -1,2 +1,8 @@
-if __name__ == '__main__':
-    print('Task 12. Equal parts')
+import math
+i = input("Enter sequence: ")
+a = list(i.split())
+b = math.floor(len(a)//2)
+first = a[:b]
+second = a[b:]
+print(first)
+print(second)
