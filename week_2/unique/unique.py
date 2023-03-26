@@ -1,2 +1,5 @@
-if __name__ == '__main__':
-    print('Task 15. Unique.')
+s = input('Enter a sequence of numbers: ')
+a = list(s.split())
+unique = list(set(a))
+print(sorted(unique))
+
