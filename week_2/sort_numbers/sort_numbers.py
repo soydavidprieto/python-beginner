@@ -1,2 +1,5 @@
-if __name__ == '__main__':
-    print('Task 10. Sort numbers')
+i = input("Enter numbers: ")
+x = list(map(int, (i.split())))
+x.sort()
+print(x)
+
