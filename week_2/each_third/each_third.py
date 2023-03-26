@@ -1,2 +1,5 @@
-if __name__ == '__main__':
-    print('Task 11. Each third')
+i = input("Enter sequence: ")
+a = list(i.split())
+z = a[::3]
+print(z)
+
