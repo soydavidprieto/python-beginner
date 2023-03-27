@@ -53,6 +53,30 @@ CAST = {
 
 
 # task 16
+# list_films = []
+# film_picker = input("Search by Genre:  ")
+# if film_picker == "y":
+#     print(f"Available Genres:  {list(GENRES.keys())}")
+#     genre_picker = input("Enter genre: ")
+#     if genre_picker == "comedy":
+#         print(f"Available Movies:  {GENRES['comedy']}")
+#     movie_1 = input(f"Enter movie: ")
+#     if movie_1 == "Anger Management":
+#         print(f"Movie to watch: {GENRES['comedy'][1]}. Genre: {list(GENRES.keys())[0]}.")
+# elif film_picker == "n":
+#     actor = input("Search by Actor:  ")
+#     if film_picker == "y":
+#         print(f"Available Actors: {list(CAST.keys())}")
+#     actor_name = input("Enter actor: ")
+#     for movie_to_watch, starring in CAST.items():
+#         if actor_name in starring:
+#             list_films.append(movie_to_watch)
+#     print(f"Available movies: {list_films} with Tom Cruise")
+#     film_by_actor = input("Enter movie: ")
+#     if film_by_actor == "Mission Impossible":
+#         print(f"Movie to watch: {list(CAST.keys())[5]}. Starring: {CAST['Mission Impossible'][0]}")
+
+# task 17
 list_films = []
 film_picker = input("Search by Genre:  ")
 if film_picker == "y":
@@ -63,19 +87,30 @@ if film_picker == "y":
     movie_1 = input(f"Enter movie: ")
     if movie_1 == "Anger Management":
         print(f"Movie to watch: {GENRES['comedy'][1]}. Genre: {list(GENRES.keys())[0]}.")
-elif film_picker == "n":
-    actor = input("Search by Actor:  ")
-    if film_picker == "y":
-        print(f"Available Actors: {list(CAST.keys())}")
-    actor_name = input("Enter actor: ")
-    for movie_to_watch, starring in CAST.items():
-        if actor_name in starring:
-            list_films.append(movie_to_watch)
-    print(f"Available movies: {list_films} with Tom Cruise")
-    film_by_actor = input("Enter movie: ")
-    if film_by_actor == "Mission Impossible":
-        print(f"Movie to watch: {list(CAST.keys())[5]}. Starring: {CAST['Mission Impossible'][0]}")
 
+elif film_picker == "n":
+    while True:
+        actor = input("Search by Actor:  ")
+        if film_picker == "y":
+            print(f"Available Actors: {list(CAST.keys())}")
+        actor_name = input("Enter actor: ")
+        if actor_name == "Tom Cruise":
+            for movie_to_watch, starring in CAST.items():
+                if actor_name in starring:
+                    list_films.append(movie_to_watch)
+            print(f"Available movies: {list_films} with Tom Cruise")
+            break
+        else:
+            print(f"Actor {actor_name} not found. Please try again")
+            continue
+    while True:
+        film_by_actor = input("Enter movie: ")
+        if film_by_actor == "Mission Impossible":
+            print(f"Movie to watch: {list(CAST.keys())[5]}. Starring: {CAST['Mission Impossible'][0]}")
+            break
+        else:
+            print(f"Movie {film_by_actor} with actor Tom Cruise not found. Please try again.")
+            continue
 
 
 
