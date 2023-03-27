@@ -34,29 +34,42 @@ if __name__ == '__main__':
         'Meet Joe Black': ['Brad Pitt', 'Anthony Hopkins'],
         'Mission Impossible': ['Tom Cruise', 'Jeremy Renner']
     }
-    available_actors=[]
+    available_actors = []
 
     search_by_genre = input('Search by Genre? y/n: ')
-
     if search_by_genre == 'y':
         print('Available Genres:', list(GENRES.keys()))
-        genre = input('Enter genre: ')
-        available_movies = {key: value for (key, value) in GENRES.items() if genre == key}
+        while True:
+            genre = input('Enter genre: ')
+            if str(genre) in GENRES.keys():
+                available_movies = {key: value for (key, value) in GENRES.items() if genre == key}
+                break
+            print("Genre ", genre, " not found. Please try again.")
         print('Available Movies:', list(available_movies.values()))
-        movie = input('Enter movie: ')
-        print('Movie to watch:', movie, "Genre: ", genre)
+        while True:
+            movie = input('Enter movie: ')
+            if str(movie) in str(available_movies.values()):
+                print('Movie to watch:', movie, "Genre: ", genre)
+                break
+            print("Movie ", movie, " not found. Please try again.")
     elif search_by_genre == 'n':
         search_by_actor = input('Search by Actor? y/n: ')
         for key, val in CAST.items():
             for i in val:
                 available_actors.append(i)
         print('Available Actors:', available_actors)
-        actor = input('Enter actor: ')
-        available_movies = {key: value for (key, value) in CAST.items() if str(actor) in str(value)}
-        print('Available Movies:', list(available_movies.keys()))
-        movie = input('Enter movie: ')
-        print('Movie to watch:', movie, "Starring: ", actor)
+        while True:
+            actor = input('Enter actor: ')
+            if str(actor) in str(available_actors):
+                available_movies = {key: value for (key, value) in CAST.items() if str(actor) in str(value)}
+                print('Available Movies:', list(available_movies.keys()))
+                break
+            print("Actor ", actor, " not found. Please try again.")
+        while True:
+            movie = input('Enter movie: ')
+            if str(movie) in str(available_movies.keys()):
+                print('Movie to watch:', movie, "Starring: ", actor)
+                break
+            print("Movie ", movie, " not found. Please try again.")
     else:
         print("Something went wrong. Try again")
-
-# this program doesn't cover the cases when user enters invalid data
