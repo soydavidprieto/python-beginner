@@ -52,6 +52,9 @@ Python entry level course for people who are not familiar with programming conce
 * [for](https://mykytapavlov.github.io/nerd/src/python/control-flow/for)
 * [while](https://mykytapavlov.github.io/nerd/src/python/control-flow/while)
 
+##### 4. Homework
+* [movie_picker](https://github.com/mykytapavlov/python-beginner/tree/main/week_3/movie_picker)
+
 ### Week 3.
 #### 5. Control flow. Defining functions and handling exceptions.
 * [function](https://mykytapavlov.github.io/nerd/src/python/control-flow/function)
