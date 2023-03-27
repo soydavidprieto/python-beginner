@@ -36,8 +36,13 @@ if search_genre == 'y':
         print('Available movies: ', GENRES.get(g))
     else:
         exit()
+    m = input('Enter name of the movie: ')
+    if m in GENRES.get(g):
+        print('Movie to watch:', m + '. ' 'Genre:', g)
+    else:
+        exit()
 
-if search_genre == 'n':
+elif search_genre == 'n':
     search_actor = input('Search by actor: ')
     if search_actor == 'y':
         a = input('Enter actor: ')
@@ -45,6 +50,11 @@ if search_genre == 'n':
             print('Actors:', list_2)
         if a in list_2:
             print('Available movies: ', ACTORS.get(a))
+        else:
+            exit()
+        m2 = input('Enter name of the movie: ')
+        if m2 in ACTORS.get(a):
+            print('Movie to watch:', m2 + '. ' 'Starring:', a)
         else:
             exit()
     if search_actor not in {'y', 'n'}:
