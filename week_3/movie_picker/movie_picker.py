@@ -48,7 +48,7 @@ if __name__ == '__main__':
         print('Available Movies:', list(available_movies.values()))
         while True:
             movie = input('Enter movie: ')
-            if str(movie) in str(available_movies.values()):
+            if str(movie) in str(available_movies.values()):  # TODO: [Mykyta] if movie in available_movies.values()
                 print('Movie to watch:', movie, "Genre: ", genre)
                 break
             print("Movie ", movie, " not found. Please try again.")
@@ -60,13 +60,15 @@ if __name__ == '__main__':
         print('Available Actors:', available_actors)
         while True:
             actor = input('Enter actor: ')
-            if str(actor) in str(available_actors):
+            if str(actor) in str(available_actors):  # TODO: [Mykyta] if movie in available_movies.values()
+                # TODO: [Mykyta] if actor in value
                 available_movies = {key: value for (key, value) in CAST.items() if str(actor) in str(value)}
                 print('Available Movies:', list(available_movies.keys()))
                 break
             print("Actor ", actor, " not found. Please try again.")
         while True:
             movie = input('Enter movie: ')
+            # TODO: [Mykyta] if movie in available_movies
             if str(movie) in str(available_movies.keys()):
                 print('Movie to watch:', movie, "Starring: ", actor)
                 break
