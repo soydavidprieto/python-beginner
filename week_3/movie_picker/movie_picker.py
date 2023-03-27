@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    print('Tasks 15-17. Movie picker.')
+    print('Tasks 15. Movie picker.')
 
     genre = {
         'comedy': ['Meet the Parents', 'Anger Management'],
@@ -53,8 +53,3 @@ if __name__ == '__main__':
                 print('Movie to watch: ' + entered_movie + '.' + ' Starring: ' + picked_actor + '.')
             else:
                 exit()
-
-
-
-  #  else:
-  #      exit()
