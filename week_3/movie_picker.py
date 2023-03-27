@@ -94,6 +94,7 @@ elif film_picker == "n":
         if film_picker == "y":
             print(f"Available Actors: {list(CAST.keys())}")
         actor_name = input("Enter actor: ")
+        # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
         if actor_name == "Tom Cruise":
             for movie_to_watch, starring in CAST.items():
                 if actor_name in starring:
@@ -104,6 +105,7 @@ elif film_picker == "n":
             print(f"Actor {actor_name} not found. Please try again")
             continue
     while True:
+        # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
         film_by_actor = input("Enter movie: ")
         if film_by_actor == "Mission Impossible":
             print(f"Movie to watch: {list(CAST.keys())[5]}. Starring: {CAST['Mission Impossible'][0]}")
