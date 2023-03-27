@@ -9,6 +9,7 @@ if __name__ == '__main__':
         'thriller': 'Vanilla Sky',
         'action': 'Mission Impossible'
     }
+    # TODO: [Mykyta] see task, actors are replaced with CAST
     actors = {
         'Robert De Niro': ['Meet the Parents'],
         'Ben Stiller': ['Meet the Parents'],
