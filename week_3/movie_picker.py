@@ -77,42 +77,75 @@ CAST = {
 #         print(f"Movie to watch: {list(CAST.keys())[5]}. Starring: {CAST['Mission Impossible'][0]}")
 
 # task 17
-film_picker = input("Search by Genre:  ")
-if film_picker == "y":
-    print(f"Available Genres:  {list(GENRES.keys())}")
-    genre_picker = input("Enter genre: ")
-    if genre_picker == "comedy":
-        print(f"Available Movies:  {GENRES['comedy']}")
-    movie_1 = input(f"Enter movie: ")
-    if movie_1 == "Anger Management":
-        print(f"Movie to watch: {GENRES['comedy'][1]}. Genre: {list(GENRES.keys())[0]}.")
-elif film_picker == "n":
-    # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
-    if input("Search fo actors? ") == 'y':
-        while True:
-            actor = input("Enter actor: ")
-            movies_1 = []
-            for value in CAST.items():
-                if actor in value[1]:
-                    movies_1.append(value[0])
-            if len(movies_1):
-                print(f"Available movies {movies_1} with {actor}")
-            else:
-                print(f"No actor named {actor} was found")
-                continue
-            break
-            # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
-        while True:
-            movie = input("Enter movie: ")
-            movies_2 = []
-            for movie_name in CAST.items():
-                if movie in movie_name[0]:
-                    movies_2.append(movie_name[0])
-            if len(movies_2):
-                print(f"Movie to watch {movie} Starring {actor}")
-            else:
-                print(f"Movie: {movie} with actor {actor} not found. Please try again.")
-                continue
-            break
+# film_picker = input("Search by Genre:  ")
+# if film_picker == "y":
+#     print(f"Available Genres:  {list(GENRES.keys())}")
+#     genre_picker = input("Enter genre: ")
+#     if genre_picker == "comedy":
+#         print(f"Available Movies:  {GENRES['comedy']}")
+#     movie_1 = input(f"Enter movie: ")
+#     if movie_1 == "Anger Management":
+#         print(f"Movie to watch: {GENRES['comedy'][1]}. Genre: {list(GENRES.keys())[0]}.")
+# elif film_picker == "n":
+#     # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
+#     if input("Search fo actors? ") == 'y':
+#         while True:
+#             actor = input("Enter actor: ")
+#             movies_1 = []
+#             for value in CAST.items():
+#                 if actor in value[1]:
+#                     movies_1.append(value[0])
+#             if len(movies_1):
+#                 print(f"Available movies {movies_1} with {actor}")
+#             else:
+#                 print(f"No actor named {actor} was found")
+#                 continue
+#             break
+#             # TODO: [Mykyta] No names should be hardcoded, any movie can be picked from the list for any actor
+#         while True:
+#             movie = input("Enter movie: ")
+#             movies_2 = []
+#             for movie_name in CAST.items():
+#                 if movie in movie_name[0]:
+#                     movies_2.append(movie_name[0])
+#             if len(movies_2):
+#                 print(f"Movie to watch {movie} Starring {actor}")
+#             else:
+#                 print(f"Movie: {movie} with actor {actor} not found. Please try again.")
+#                 continue
+#             break
 
+def search(film_picker, actor, movie):
+    if film_picker == "y":
+        print(f"Available Genres:  {list(GENRES.keys())}")
+        genre_picker = input("Enter genre: ")
+        if genre_picker == "comedy":
+            print(f"Available Movies:  {GENRES['comedy']}")
+        movie_1 = input(f"Enter movie: ")
+        if movie_1 == "Anger Management":
+            print(f"Movie to watch: {GENRES['comedy'][1]}. Genre: {list(GENRES.keys())[0]}.")
+    elif film_picker == "n":
+            while True:
+                movies_1 = []
+                for value in CAST.items():
+                    if actor in value[1]:
+                        movies_1.append(value[0])
+                if len(movies_1):
+                    print(f"Available movies {movies_1} with {actor}")
+                else:
+                    print(f"No actor named {actor} was found")
+                    continue
+                break
+            while True:
+                movies_2 = []
+                for movie_name in CAST.items():
+                    if movie in movie_name[0]:
+                        movies_2.append(movie_name[0])
+                if len(movies_2):
+                    print(f"Movie to watch {movie} Starring {actor}")
+                else:
+                    print(f"Movie: {movie} with actor {actor} not found. Please try again.")
+                    continue
+                break
 
+search("n", "Tom Cruise", "Vanilla Sky")
