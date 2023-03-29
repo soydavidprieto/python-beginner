@@ -42,7 +42,8 @@ PG = {
 }
 ```
 1. Ask user about his age. (Make sure user provides an integer, `isinstance(value, int) is True`)
-2. Pre-filter `GENRES` and `ACTORS` before processing based on `PG` (in order to not rework entire program).
+2. Pre-filter `GENRES` and `ACTORS` before processing based on `PG` (in order to not rework entire program). 
+   User's age should be >= PG rate in order to watch the movie.
 
 ```python
 def prepare(genres, pg_rate):
