@@ -8,7 +8,7 @@ while True:
         string_list = numbers.split(",")
         # TODO: [Mykyta] use int(i) instead of eval(i). eval is dark magic 
         # (can lead to security issues https://realpython.com/python-eval-function/#minimizing-the-security-issues-of-eval).
-        int_list = [eval(i) for i in string_list]
+        int_list = [int(i) for i in string_list]
     elif " " in numbers:
         string_list = numbers.split()
         int_list = [eval(i) for i in string_list]
