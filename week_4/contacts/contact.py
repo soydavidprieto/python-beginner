@@ -23,3 +23,8 @@ def validate_age(age):
             raise ValueError
     except ValueError:
         raise ValueError('Invalid age!')
+
+
+class Contact:
+    # TODO: implement instead of above
+    ...

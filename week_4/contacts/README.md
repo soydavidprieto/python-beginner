@@ -228,6 +228,23 @@ Understanding the challenges, let's now hide the validation of the contact under
 (as well as everything else which is contact related).
 Every other developer should not care about internals of our contact class.
 
-Your task is it to rework `contact.py` in order to create `Contact` class 
+1. Your task is it to rework `contact.py` in order to create `Contact` class 
 and use it in `main.py` instead of current logic.
 Look at [class](https://mykytapavlov.github.io/nerd/src/python/oop/class) once again.
+
+2. You need to create `ContactList` class in `contact_list.py`.
+```python
+# 1. have to if it's an instance of Contact before append
+contact_list = ContactList()
+contact_list.append(1)  # -> ValueError('Invalid contact!')
+
+contact = Contact(name='Jack', email='jack@example.com', age=30)
+contact_list.append(contact)  # -> Save contact `Jack` to the storage
+
+# 2. Support `for` loop
+for contact in contact_list:
+    print(contact)
+
+# 3. print contact list nicely
+print(contact_list)
+```
