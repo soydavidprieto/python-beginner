@@ -232,7 +232,7 @@ Every other developer should not care about internals of our contact class.
 and use it in `main.py` instead of current logic.
 Look at [class](https://mykytapavlov.github.io/nerd/src/python/oop/class) once again.
 
-2. You need to create `ContactList` class in `contact_list.py`.
+2. You need to create `ContactList` class in `contact_list.py` and use it in `main.py` instead of default one.
 ```python
 # 1. have to if it's an instance of Contact before append
 contact_list = ContactList()
