@@ -234,17 +234,17 @@ Look at [class](https://mykytapavlov.github.io/nerd/src/python/oop/class) once a
 
 2. You need to create `ContactList` class in `contact_list.py` and use it in `main.py` instead of default one.
 ```python
-# 1. have to if it's an instance of Contact before append
+# 1. Have to verify if it's an instance of Contact before append
 contact_list = ContactList()
 contact_list.append(1)  # -> ValueError('Invalid contact!')
 
 contact = Contact(name='Jack', email='jack@example.com', age=30)
 contact_list.append(contact)  # -> Save contact `Jack` to the storage
 
-# 2. Support `for` loop
+# 2. Should support `for` loop
 for contact in contact_list:
     print(contact)
 
-# 3. print contact list nicely
+# 3. Should print contact list nicely
 print(contact_list)
 ```
