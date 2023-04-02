@@ -39,7 +39,9 @@ while search_type not in {'y' , 'n'}:  # TODO: [Mykyta] this is hard to read -> 
 if search_type == "y":
     print(f'Available genres: {GENRES.keys()}')
     genre = input('Enter genre: ')
-    while genre not in GENRES.keys(): # TODO: [Mykyta] -> while genre not in GENRES; `in` checks keys by default. [Joanna] Doesnt work for me, there need to be .keys to check the keys.
+
+    # TODO: 02/04/2023 [Mykyta]: Read https://realpython.com/iterate-through-dictionary-python/#iterating-through-keys-directly
+    while genre not in GENRES.keys():
         print(f'Genre {genre} not found. Please try again.')
         genre = input('Enter genre: ')
     print(f'Avalaible movies: {GENRES[genre]}')
@@ -64,10 +66,15 @@ elif search_type == "n":
                 print(f'Actor {actor} not found. Please try again.')
                 actor = input('Enter actor: ')
             movies_list = []
+            
+            # TODO: [Mykyta] Maybe instead of .values() use .items() here?:
+            # for movie, cast in CAST.items():
+            #     ...
             for value in CAST.values():
                 if actor in value:
                     keys = [k for k, v in CAST.items() if v == value]
                     movies_list += keys
+
             print(f'Avalaible movies: {movies_list}')
             movie = input('Enter movie: ')
             while movie not in movies_list:
