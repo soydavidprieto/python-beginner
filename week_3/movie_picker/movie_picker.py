@@ -42,12 +42,22 @@ if __name__ == '__main__':
     # Genre
     if bygenre == 'y':
         print('Available Genres: ' + str(genre_list))
-        input_genre = input('Enter Genre: ')
-        print('Available Movies: ' + str(GENRES[input_genre]));
-        input_movie = input('Enter movie: ')
-        print('Movie to watch: ' + input_movie + ' Genre: ' + input_genre);
+        while True:
+            input_genre = input('Enter Genre: ')
+            if input_genre in GENRES:
+                print('Available Movies: ' + str(GENRES[input_genre]));
+                break
+            else:
+                print(f'Genre {input_genre} not found. Please try again')
+        while True:
+            input_movie = input('Enter movie: ')
+            if input_movie in GENRES[input_genre]:
+                print('Movie to watch: ' + input_movie + ' Genre: ' + input_genre);
+                break
+            else:
+                print(f'Movie {input_movie} not found. Please try again')
 
-     # Actor
+    # Actor
     elif bygenre == 'n':
         byactor = input('Search by Actor: ')
         if byactor == 'y':
@@ -63,12 +73,23 @@ if __name__ == '__main__':
 
             uniq_actors = list(set(allactors))
             print('Available Actors: ' + str(uniq_actors))
-            input_actor = input('Enter Actor: ')
 
-            movies = []
-            for movie in CAST.keys():
-                if input_actor in CAST[movie]:
-                    movies.append(movie)
-            print('Available Movies: ' + str(movies))
-            input_movie = input('Enter movie: ')
-            print('Movie to watch: ' + input_movie + ' Starring: ' + input_actor)
+            while True:
+                input_actor = input('Enter Actor: ')
+                movies = []
+                for movie in CAST.keys():
+                    if input_actor in CAST[movie]:
+                        movies.append(movie)
+                if movies:
+                    print('Available Movies: ' + str(movies))
+                    break
+                else:
+                    print(f'Actor {input_actor} not found. Please try again.')
+
+            while True:
+                input_movie = input('Enter movie: ')
+                if input_movie in movies:
+                    print('Movie to watch: ' + input_movie + ' Starring: ' + input_actor)
+                    break
+                else:
+                    print(f'Movie {input_movie} with actor {input_actor} not found. Please try again.')
