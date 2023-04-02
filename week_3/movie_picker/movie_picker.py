@@ -67,6 +67,7 @@ if __name__ == '__main__':
             # input_movie = input('Enter movie: ')
             # print('Movie to watch: ' + input_movie + ' Starring: ' + input_actor)
             allactors = []
+            # TODO: [Mykyta] Read: https://realpython.com/iterate-through-dictionary-python/#iterating-through-keys-directly
             for movie in CAST.keys():
                 for actor in CAST[movie]:
                     allactors.append(actor)
