@@ -67,7 +67,7 @@ elif search_type == "n":
                 actor = input('Enter actor: ')
             movies_list = []
             
-            # TODO: [Mykyta] Maybe instead of .values() use .items() here?:
+            # TODO: 02/04/2023 [Mykyta] Maybe instead of .values() use .items() here?:
             # for movie, cast in CAST.items():
             #     ...
             for value in CAST.values():
