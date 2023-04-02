@@ -96,4 +96,4 @@ if __name__ == '__main__':
         print("Something went wrong. Try again")
 
 #Unfortunatly negative scenarios doesn't work. Need to cover cases when the user enter invalid data
-#filter by age doesn't work yet
+#filter by age doesn't work yet.
