@@ -60,8 +60,14 @@ Python entry level course for people who are not familiar with programming conce
 * [function](https://mykytapavlov.github.io/nerd/src/python/control-flow/function)
 * [try](https://mykytapavlov.github.io/nerd/src/python/control-flow/try)
 
+##### 5. Homework
+* [refactor_it](https://github.com/mykytapavlov/python-beginner/tree/main/week_3/refactor_it)
+
 #### 6. Intro to OOP. Class.
 * [class](https://mykytapavlov.github.io/nerd/src/python/oop/class)
+
+##### 6. Homework
+* [contacts](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/contacts)
 
 ### Week 4.
 #### 7. Building console game. Part 1.
