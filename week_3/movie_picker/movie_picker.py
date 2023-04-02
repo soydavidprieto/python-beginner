@@ -20,44 +20,62 @@ CAST = {
 list_1 = list(GENRES.keys())
 list_2 = list(deepflatten(list(CAST.values()), depth=1))
 
-search_genre = input('Search by genre: ')
-if search_genre == 'y':
-    g = input('Enter genre: ')
-    if g not in GENRES:
+while True:
+    search_genre = input('Search by genre: ')
+    if search_genre == 'y':
         print('Available genres:', list_1)
-    if g in list_1:
-        print('Available movies: ', GENRES.get(g))
-    else:
+        while True:
+            g = input('Enter genre: ')
+            if g in list_1:
+                print('Available movies: ', GENRES.get(g))
+                break
+            else:
+                print('Genre', g, 'not found. Please try again.')
+
+        while True:
+            m = input('Enter name of the movie: ')
+            if m in GENRES.get(g):
+                print('Movie to watch:', m + '. ' 'Genre:', g)
+                break
+            else:
+                print('Movie', m, 'not found. Please try again.')
+        break
+
+    if search_genre == 'n':
+        while True:
+            search_actor = input('Search by actor: ')
+            if search_actor == 'y':
+                print('Available actors: ', list_2)
+                while True:
+                    a = input('Enter actor: ')
+                    if a in list_2:
+                        break
+                    else:
+                        print('Actor', a, 'not found. Please try again.')
+
+                starring = set()
+
+                for i in CAST:
+                    for y in CAST.get(i):
+                        if y == a:
+                            starring.add(i)
+                print('Available movies: ', starring)
+
+                while True:
+                    m2 = input('Enter movie: ')
+                    if m2 in starring:
+                        print('Movie to watch:', m2 + '. ' 'Starring:', a)
+                        break
+                    else:
+                        print('Movie', m2, 'not found. Please try again.'),
+                break
+            if search_actor == 'n':
+                print('Goodbye!')
+                exit()
+            else:
+                print('Please type "y" or "n" ')
         exit()
-    m = input('Enter name of the movie: ')
-    if m in GENRES.get(g):
-        print('Movie to watch:', m + '. ' 'Genre:', g)
     else:
-        exit()
-
-elif search_genre == 'n':
-    search_actor = input('Search by actor: ')
-    if search_actor == 'y':
-        print('Available actors: ', list_2)
-        a = input('Enter actor: ')
-        if a not in list_2:
-            exit()
-
-        starring = set()
-
-        for i in CAST:
-            for y in CAST.get(i):
-                if y == a:
-                    starring.add(i)
-        print('Available movies: ', starring)
-
-        m2 = input('Enter movie: ')
-        if m2 in starring:
-            print('Movie to watch:', m2 + '. ' 'Starring:', a)
-    if search_actor not in {'y', 'n'}:
         print('Please type "y" or "n" ')
 
-if search_genre not in {'y', 'n'}:
-    print('Please type "y" or "n" ')
-else:
-    exit()
+
