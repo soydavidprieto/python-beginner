@@ -33,7 +33,7 @@ CAST = {
 }
 
 search_type = input('Search by genre (y or n): ')
-while search_type not in {'y' , 'n'}:  # TODO: [Mykyta] this is hard to read -> while search_type in {'y', 'n'} [Joanna] Corrected
+while search_type not in {'y' , 'n'}:
     print("Wrong answer!")
     search_type = input('Do you want to search by genre? (y or n): ')
 if search_type == "y":
