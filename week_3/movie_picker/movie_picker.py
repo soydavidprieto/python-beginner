@@ -34,42 +34,66 @@ if __name__ == '__main__':
         'Meet Joe Black': ['Brad Pitt', 'Anthony Hopkins'],
         'Mission Impossible': ['Tom Cruise', 'Jeremy Renner']
     }
+
+    PG = {
+        13: ['Meet the Parents', 'Anger Management', 'Mummy', 'Meet Joe Black', 'Mission Impossible'],
+        16: ['Vanilla Sky']
+    }
+
+    def search_genre(genre, pg_rate):
+        new_genres = {}
+        if genre in GENRES.keys():
+            genres = {key: value for (key, value) in GENRES.items() if genre == key}
+            if int(pg_rate) >= 13:
+                genres2 = {key: value for (key, value) in PG.items() if key == 13}
+                new_genres = {key: value for (key, value) in genres.items() if genres.values() != genres2.values()}
+                return new_genres
+            elif int(pg_rate) >= 16:
+                genres2 = {key: value for (key, value) in PG.items() if key == 16}
+                new_genres = {key: value for (key, value) in genres.items() if genres.values() != genres2.values()}
+                return new_genres
+        else:
+            print("Genre ", genre, " not found. Please try again.")
+
+
+    def search_movie(movie, available_movies, source_name):
+        if movie in str(available_movies):
+            if source_name == 'genre':
+                print('Movie to watch:', movie, "Genre: ", genre)
+            elif source_name == 'actor':
+                print('Movie to watch:', movie, "Starring: ", actor)
+        else:
+            print("Movie ", movie, " not found. Please try again.")
+
+
+    def search_actor(actor, available_actors):
+        if actor in str(available_actors):
+            return {key: value for (key, value) in CAST.items() if str(actor) in str(value)}
+        else:
+            print("Actor ", actor, " not found. Please try again.")
+
     available_actors = []
 
     search_by_genre = input('Search by Genre? y/n: ')
     if search_by_genre == 'y':
         print('Available Genres:', list(GENRES.keys()))
-        while True:
-            genre = input('Enter genre: ')
-            if str(genre) in GENRES.keys():
-                available_movies = {key: value for (key, value) in GENRES.items() if genre == key}
-                break
-            print("Genre ", genre, " not found. Please try again.")
-        print('Available Movies:', list(available_movies.values()))
-        while True:
-            movie = input('Enter movie: ')
-            if str(movie) in str(available_movies.values()):
-                print('Movie to watch:', movie, "Genre: ", genre)
-                break
-            print("Movie ", movie, " not found. Please try again.")
+        genre = input('Enter genre: ')
+        age = input('Enter your age: ')
+        print('Available Movies:', list(search_genre(genre, age).values()))
+        movie = input('Enter movie: ')
+        search_movie(movie, search_genre(genre, age).values(), 'genre')
     elif search_by_genre == 'n':
         search_by_actor = input('Search by Actor? y/n: ')
         for key, val in CAST.items():
             for i in val:
                 available_actors.append(i)
         print('Available Actors:', available_actors)
-        while True:
-            actor = input('Enter actor: ')
-            if str(actor) in str(available_actors):
-                available_movies = {key: value for (key, value) in CAST.items() if str(actor) in str(value)}
-                print('Available Movies:', list(available_movies.keys()))
-                break
-            print("Actor ", actor, " not found. Please try again.")
-        while True:
-            movie = input('Enter movie: ')
-            if str(movie) in str(available_movies.keys()):
-                print('Movie to watch:', movie, "Starring: ", actor)
-                break
-            print("Movie ", movie, " not found. Please try again.")
+        actor = input('Enter actor: ')
+        print('Available Movies:', list(search_actor(actor,available_actors).keys()))
+        movie = input('Enter movie: ')
+        search_movie(movie, search_actor(actor,available_actors).keys(), 'actor')
     else:
         print("Something went wrong. Try again")
+
+#Unfortunatly negative scenarios doesn't work. Need to cover cases when the user enter invalid data
+#filter by age doesn't work yet
