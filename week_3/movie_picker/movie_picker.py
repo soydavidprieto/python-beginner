@@ -1,3 +1,5 @@
+from iteration_utilities import deepflatten
+
 GENRES = {
     'comedy': ['Meet the Parents', 'Anger Management'],
     'adventures': ['Mummy'],
@@ -6,26 +8,17 @@ GENRES = {
     'thriller': ['Vanilla Sky'],
     'action': ['Mission Impossible']
 }
-
-
-ACTORS = {
-    'Robert De Niro': ['Meet the Parents'],
-    'Ben Stiller': ['Meet the Parents'],
-    'Adam Sandler': ['Anger Management'],
-    'Jack Nicholson': ['Anger Management'],
-    'Brendan Fraser': ['Mummy'],
-    'Rachel Weisz': ['Mummy'],
-    'Tom Cruise': ['Vanilla Sky', 'Mission Impossible'],
-    'Penelope Cruz': ['Vanilla Sky'],
-    'Cameron Diaz': ['Vanilla Sky'],
-    'Brad Pitt': ['Meet Joe Black'],
-    'Anthony Hopkins': ['Meet Joe Black'],
-    'Jeremy Renner': ['Mission Impossible']
+CAST = {
+    'Meet the Parents': ['Robert De Niro', 'Ben Stiller'],
+    'Anger Management': ['Adam Sandler', 'Jack Nicholson'],
+    'Mummy': ['Brendan Fraser', 'Rachel Weisz'],
+    'Vanilla Sky': ['Tom Cruise', 'Penelope Cruz', 'Cameron Diaz'],
+    'Meet Joe Black': ['Brad Pitt', 'Anthony Hopkins'],
+    'Mission Impossible': ['Tom Cruise', 'Jeremy Renner']
 }
 
 list_1 = list(GENRES.keys())
-list_2 = list(ACTORS.keys())
-
+list_2 = list(deepflatten(list(CAST.values()), depth=1))
 
 search_genre = input('Search by genre: ')
 if search_genre == 'y':
@@ -45,26 +38,26 @@ if search_genre == 'y':
 elif search_genre == 'n':
     search_actor = input('Search by actor: ')
     if search_actor == 'y':
+        print('Available actors: ', list_2)
         a = input('Enter actor: ')
-        if a not in ACTORS:
-            print('Actors:', list_2)
-        if a in list_2:
-            print('Available movies: ', ACTORS.get(a))
-        else:
+        if a not in list_2:
             exit()
-        m2 = input('Enter name of the movie: ')
-        if m2 in ACTORS.get(a):
+
+        starring = set()
+
+        for i in CAST:
+            for y in CAST.get(i):
+                if y == a:
+                    starring.add(i)
+        print('Available movies: ', starring)
+
+        m2 = input('Enter movie: ')
+        if m2 in starring:
             print('Movie to watch:', m2 + '. ' 'Starring:', a)
-        else:
-            exit()
     if search_actor not in {'y', 'n'}:
         print('Please type "y" or "n" ')
-    else:
-        exit()
 
 if search_genre not in {'y', 'n'}:
     print('Please type "y" or "n" ')
 else:
     exit()
-
-
