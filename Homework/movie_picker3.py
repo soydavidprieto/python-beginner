@@ -33,12 +33,12 @@ CAST = {
 }
 
 search_type = ''
-while search_type != 'y' or 'n':
+while search_type != 'y' or 'n':  # TODO: [Mykyta] this is hard to read -> while search_type in {'y', 'n'}
     search_type = input('Search by genre (y or n): ')
     if search_type == "y":
         print(f'Available genres: {GENRES.keys()}')
         genre = input('Enter genre: ')
-        while genre not in GENRES.keys():
+        while genre not in GENRES.keys(): # TODO: [Mykyta] -> while genre not in GENRES; `in` checks keys by default
             print(f'Genre {genre} not found. Please try again.')
             genre = input('Enter genre: ')
         print(f'Avalaible movies: {GENRES[genre]}')
