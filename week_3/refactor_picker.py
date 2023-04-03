@@ -31,36 +31,30 @@ CAST = {
 }
 
 def search(source, source_name):
-    if source == list(GENRES.keys()):
-        print(f"Available: {source_name}(s): {source}")
-        while True:
-            ele1_list = []
-            picker = input("Enter genre: ")
-            for element in GENRES.items():
-                if picker in element[0]:
-                    ele1_list.append(element[1])
-            if len(ele1_list):
-                print(f"Available movies: {str(ele1_list[0])} with in {picker} genre")
-                break
-            else:
-                print("Enter correct genre")
-    elif source:
-        print(f"Available: {source_name}(s): {source}")
-        while True:
-            ele2_list = []
-            picker = input("Enter movie: ")
-            for element in GENRES.items():
-                if picker in element[1]:
-                    ele2_list.append(element[0])
-            if len(ele2_list):
-                print(f"Movie to watch: '{picker}'. Genre(s): {str(ele2_list)}.")
-                break
-            else:
-                print("Enter correct movie")
-                continue
+    print(f"Available: {source_name}(s): {source}")
+    while True:
+        source_item = input(f"Enter {source_name}: ")
+        if source_item in source:
+            return source_item
+        print("Not found try again")
 
 genre = search(source=list(GENRES.keys()), source_name="genres")
-movie = search(source=GENRES['comedy'], source_name="movie")
+movie = search(source=GENRES[genre], source_name="movie")
+print(f"Watch {movie}  and genre is {genre}")
 
-# I not sure whether this is correct, maybe I didn't get the task properly, or there is some mistake in the description,
-# but at least for now this function works as it should, but frankly saying I'm not satisfied with this solution, there should be something more smart:)
+def movies_by_actors(cast):
+    actors = {}
+    for key, value in cast.items():
+        for actor_name in value:
+            films = []
+            for key_value in cast.items():
+                if actor_name in key_value[1]:
+                    films.append(key_value[0])
+                    actors.update({actor_name: films})
+    return actors
+
+
+# Usage example (search by actor):
+actors = movies_by_actors(CAST)
+actor = search(source=list(actors.keys()), source_name='actor')
+movie = search(source=actors[actor], source_name='movie')
