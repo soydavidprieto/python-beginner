@@ -52,7 +52,7 @@ if __name__ == '__main__':
         while True:
             input_movie = input('Enter movie: ')
             if input_movie in GENRES[input_genre]:
-                print('Movie to watch: ' + input_movie + ' Genre: ' + input_genre);
+                print('Movie to watch: ' + input_movie + ' Genre: ' + input_genre)
                 break
             else:
                 print(f'Movie {input_movie} not found. Please try again')
