@@ -30,7 +30,30 @@ CAST = {
     'Meet Joe Black': ['Brad Pitt', 'Anthony Hopkins'],
     'Mission Impossible': ['Tom Cruise', 'Jeremy Renner']
 }
+PG = {
+    13: {'Meet the Parents', 'Anger Management', 'Mummy', 'Meet Joe Black', 'Mission Impossible'},
+    16: {'Vanilla Sky'}
+}
+def prepare(genres, pg_rate):
+    new_genres = {}
+    while True:
+        try:
+            age = int(input('Enter your age: '))
+            break
+        except ValueError:
+            print('Age is just a number ;)')
 
+    for key in pg_rate:
+        if age >= key:
+            for title in pg_rate[key]:
+                for key, value in genres.items():
+                    for movie in value:
+                        if movie == title:
+                            if key in new_genres:
+                                new_genres[key].append(title)
+                            else:
+                                new_genres[key] = [title]
+    return new_genres
 
 def search(source, source_name):
     print(f'Available {source_name}(s): {source}')
@@ -55,7 +78,7 @@ def movies_by_actors(cast):
         actors[actor] = movies_list
     return actors
 
-
+prepare(genres=GENRES, pg_rate=PG)
 search_type = input('Search by genre (yes or no): ')
 while search_type not in {'yes', 'no'}:
     print('Wrong answer!')
