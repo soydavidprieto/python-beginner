@@ -74,18 +74,20 @@ def movies_by_actors(cast):
         for value in cast.values():
             if actor in value:
                 keys = [k for k, v in cast.items() if v == value]
-                movies_list += keys
+                for key, value in new_genres.items():
+                    if keys == value:
+                        movies_list += keys
         actors[actor] = movies_list
     return actors
 
-new_genre = prepare(genres=GENRES, pg_rate=PG)
+new_genres = prepare(genres=GENRES, pg_rate=PG)
 search_type = input('Search by genre (yes or no): ')
 while search_type not in {'yes', 'no'}:
     print('Wrong answer!')
     search_type = input('Do you want to search by genre? (yes or no): ')
 if search_type == "yes":
-    genre = search(source=list(new_genre.keys()), source_name='genre')
-    movie = search(source=new_genre[genre], source_name='movie')
+    genre = search(source=list(new_genres.keys()), source_name='genre')
+    movie = search(source=new_genres[genre], source_name='movie')
     print(f'Movie to watch: {movie}. Genre: {genre}.')
 
 elif search_type == "no":
