@@ -67,13 +67,13 @@ def search(source, source_name):
 def movies_by_actors(cast):
     actors = {}
     actors_list = []
-    for actor in CAST.values():
+    for actor in cast.values():
         actors_list += actor
     for actor in actors_list:
         movies_list = []
-        for value in CAST.values():
+        for value in cast.values():
             if actor in value:
-                keys = [k for k, v in CAST.items() if v == value]
+                keys = [k for k, v in cast.items() if v == value]
                 movies_list += keys
         actors[actor] = movies_list
     return actors
