@@ -1,6 +1,6 @@
 if __name__ == '__main__':
     print('Task 13. Coordinate.')
-    my_list=[]
+    my_list=[]  # TODO: [Mykyta] coordinate is fixed size sequence of 3 elements, use tuple instead of list
     x = input('Enter x: ')
     y = input('Enter y: ')
     z = input('Enter z: ')
