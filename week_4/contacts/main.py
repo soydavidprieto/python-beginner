@@ -8,3 +8,4 @@ if __name__ == '__main__':
     contact_list.append(contact)
     contact_list.append(Contact(name='Maary', email='jacke@xample.com', age=32))
     contact_list.print_content()
+    # contact
