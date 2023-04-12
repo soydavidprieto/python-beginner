@@ -10,16 +10,16 @@ class ContactList:
         self.contact_lst.append(contact)
 
     def print_content(self):
-        # for contact in self.contact_lst:
-        #     print(f"name: {contact.name}, email: {contact.email}, age: {contact.age}")
-
         for contact in self.contact_lst:
-            print(contact)
+            print(f"name: {contact.name}, email: {contact.email}, age: {contact.age}")
+
+        # for contact in self.contact_lst:
+        #     print(contact)
 
     def append_dict(self, contact):
         new_contact = self.contact.copy()
-        new_contact['name'] = contact._name
-        new_contact['email'] = contact._email
-        new_contact['age'] = contact._age
+        new_contact['name'] = contact.name
+        new_contact['email'] = contact.email
+        new_contact['age'] = contact.age
         self.contact_lst.append(new_contact)
 

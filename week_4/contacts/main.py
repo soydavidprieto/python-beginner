@@ -6,5 +6,5 @@ if __name__ == '__main__':
     contact_list = ContactList()
     contact = Contact(name='Jack', email='jacke@xample.com', age=30)
     contact_list.append(contact)
-    contact_list.append(Contact(name='Maary', email='jacke@xample.com', age=32))
+    contact_list.append(Contact(name='Mary', email='jacke@xample.com', age=32))
     contact_list.print_content()
