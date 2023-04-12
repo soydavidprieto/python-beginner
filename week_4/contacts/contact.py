@@ -1,25 +1,43 @@
 class Contact:
     def __init__(self, name, email, age):
         self.name = name
-        self.validate_name()
         self.email = email
-        self.validate_email()
         self.age = age
-        self.validate_age()
 
-    def validate_name(self):
-        if len(self.name) > 50:
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if len(name) > 50:
             raise ValueError('Name is too large!')
+        else:
+            self._name = name
 
-    def validate_email(self):
-        if '@' not in self.email or '.' not in self.email:
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        if '@' not in email or '.' not in email:
             raise ValueError('Invalid email!')
+        else:
+            self._email = email
 
-    def validate_age(self):
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, age):
         try:
-            self.age = int(self.age)  # Python will raise ValueError if not numeric
-            if self.age <= 0:
+            age = int(age)  # Python will raise ValueError if not numeric
+            if age <= 0:
                 # We ask Python to raise ValueError if <= 0
                 raise ValueError
+            else:
+                self._age = age
         except ValueError:
             raise ValueError('Invalid age!')
