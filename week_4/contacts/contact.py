@@ -1,8 +1,8 @@
 class Contact:
-    def __init__(self, name, email, age):
-        self.name = name
-        self.email = email
-        self.age = age
+    def __init__(self):
+        self._name = None
+        self._email = None
+        self._age = None
 
     @property
     def name(self):
