@@ -11,7 +11,7 @@ class ContactList:
 
     def print_content(self):
         for contact in self.contact_lst:
-            print(f"name: {contact.name}, email: {contact.email}, age: {contact.age}")
+            print(f"name: {contact.name}, email: {contact.email}, age: {contact.age}, sex: {contact.sex}")
 
         # for contact in self.contact_lst:
         #     print(contact)
