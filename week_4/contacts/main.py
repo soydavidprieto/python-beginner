@@ -5,11 +5,11 @@ if __name__ == '__main__':
 
     contact_list = ContactList()
     contact = Contact(sex="female")
-    contact.name, contact.email, contact.age = "Andriy", "qwerty@example.com", 35
     contact_list.append(contact)
-    print(contact.name,contact.email, contact.age, contact.sex)
-    #contact.email = "qwerty"
-    #contact_list.append(Contact(name='Mary', email='jacke@xample.com', age=32))
+    print(contact.name, contact.email, contact.age, contact.sex)
+    contact.name, contact.email, contact.age = "Andriy", "qwerty@example.com", 22
+    contact_list.append_dict(contact)
+    contact_list.append(Contact(sex="male"))
     contact_list.print_content()
-    #contact.name, contact.email, contact.age = "Andriy", "qwerty@example.com", -1
+
 

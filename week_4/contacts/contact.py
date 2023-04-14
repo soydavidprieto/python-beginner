@@ -3,7 +3,7 @@ class Contact:
         self._name = None
         self._email = None
         self._age = None
-        self. sex = sex
+        self.sex = sex
 
     @property
     def name(self):

@@ -1,5 +1,6 @@
 class ContactList:
     contact_lst = []
+    contact_lst_dict_approach = []
     contact = {
         'name': None,
         'email': None,
@@ -12,14 +13,15 @@ class ContactList:
     def print_content(self):
         for contact in self.contact_lst:
             print(f"name: {contact.name}, email: {contact.email}, age: {contact.age}, sex: {contact.sex}")
+        for cont in self.contact_lst_dict_approach:
+            print(cont)
 
-        # for contact in self.contact_lst:
-        #     print(contact)
 
     def append_dict(self, contact):
         new_contact = self.contact.copy()
         new_contact['name'] = contact.name
         new_contact['email'] = contact.email
         new_contact['age'] = contact.age
-        self.contact_lst.append(new_contact)
+        self.contact_lst_dict_approach.append(new_contact)
+
 
