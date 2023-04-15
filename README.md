@@ -68,7 +68,7 @@ Python entry level course for people who are not familiar with programming conce
 
 ##### 6. Homework
 * [contacts](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/contacts)
-* [magic](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/README.md)
+* [magic](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/magic/README.md)
 
 ### Week 4.
 #### 7. Building console game. Part 1.
