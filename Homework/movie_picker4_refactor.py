@@ -36,6 +36,7 @@ PG = {
 }
 def prepare(genres, pg_rate):
     new_genres = {}
+    movies_allowed =set()
     while True:
         try:
             age = int(input('Enter your age: '))
@@ -43,16 +44,17 @@ def prepare(genres, pg_rate):
         except ValueError:
             print('Age is just a number ;)')
 
-    for key in pg_rate:
+    for key in pg_rate: #create a set of movies allowed for the age, go throught genres
         if age >= key:
             for title in pg_rate[key]:
-                for key, value in genres.items():
-                    for movie in value:
-                        if movie == title:
-                            if key in new_genres:
-                                new_genres[key].append(title)
-                            else:
-                                new_genres[key] = [title]
+                movies_allowed.add(title)
+    for key, value in genres.items():
+        for movie in value:
+            if movie in movies_allowed:
+                if key in new_genres:
+                    new_genres[key].append(movie)
+                else:
+                    new_genres[key] = [movie]
     return new_genres
 
 def search(source, source_name):
@@ -66,18 +68,24 @@ def search(source, source_name):
 
 def movies_by_actors(cast):
     actors = {}
-    actors_list = []
-    for actor in cast.values():
-        actors_list += actor
-    for actor in actors_list:
-        movies_list = []
-        for value in cast.values():
-            if actor in value:
-                keys = [k for k, v in cast.items() if v == value]
-                for key, value in new_genres.items():
-                    if keys == value:
-                        movies_list += keys
-        actors[actor] = movies_list
+    for movie, actors_list in cast.items():
+        for actor in actors_list:
+            if actor in actors:
+                actors[actor].append(movie)
+            else:
+                actors[actor] = [movie]
+    # actors_list = []
+    # for actor in cast.values():
+    #     actors_list.append(actor)
+    # for actor in actors_list:
+    #     movies_list = []
+    #     for value in cast.values():
+    #         if actor in value:
+    #             keys = [k for k, v in cast.items() if v == value] #changing keys to values and opposite
+    #             for key, value in new_genres.items(): #changing keys to values and opposite
+    #                 if keys == value:
+    #                     movies_list += keys
+    #     actors[actor] = movies_list
     return actors
 
 new_genres = prepare(genres=GENRES, pg_rate=PG)
