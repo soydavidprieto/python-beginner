@@ -1,56 +1,47 @@
-contact = {
-    'name': None,
-    'email': None,
-    'age': None
-}
-
-
-def validate_name(name):
-    if len(name) > 50:
-        raise ValueError('Name is too large!')
-
-
-def validate_email(email):
-    if '@' not in email or '.' not in email:
-        raise ValueError('Invalid email!')
-
-
-def validate_age(age):
-    try:
-        age = int(age)  # Python will raise ValueError if not numeric
-        if age <= 0:
-            # We ask Python to raise ValueError if <= 0
-            raise ValueError
-    except ValueError:
-        raise ValueError('Invalid age!')
-
 
 class Contact:
-    def __init__(self, name, email, age):
-        self.name = name
-        self.email = email
-        self.age = age
+    def __init__(self):
+        self._name = None
+        self._email = None
+        self._age = None
 
-    def validate_name(self):
-        if len(self.name) > 50:
-            raise ValueError('Name is too large!')
+    @property
+    def age(self):
+        return self._age
 
-    def validate_email(self):
-        if '@' not in self.email or '.' not in self.email:
+    @age.setter
+    def age(self, age):
+        if age.lstrip('-+').isdigit():
+            if int(age) > 0:
+                self._age = int(age)
+            else:
+                raise ValueError('Age is less or equal 0')
+        else:
+            raise ValueError(f'Incorrect type for age: {age}. Expected: <class \'int\'>, got: {type(age)}')
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if len(name) < 50:
+            self._name = name
+        else:
+            raise ValueError(f'Name is too large!')
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        if '@' not in email or '.' not in email:
             raise ValueError('Invalid email!')
-
-    def validate_age(self):
-        try:
-            self.age = int(self.age)  # Python will raise ValueError if not numeric
-            if self.age <= 0:
-                # We ask Python to raise ValueError if <= 0
-                raise ValueError
-        except ValueError:
-            raise ValueError('Invalid age!')
-
-
+        else:
+            self._email = email
 
     def __str__(self):
-        return f"added contact: ({self.name},{self.email},{self.age})"
+        return f"added contact: ({self._name},{self._email},{self._age})"
 
     ...
