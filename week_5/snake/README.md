@@ -1,6 +1,6 @@
 This challenge needs to be done step by step.
 You have initial `snake.py`, which covers first step:
-* [1, Add Initial Snake Game classes](https://github.com/mykytapavlov/python-beginner/issues/100)
+* [1. Add Initial Snake Game classes](https://github.com/mykytapavlov/python-beginner/issues/100)
 
 Now, you need to implement other steps :) For traceability, better to do a commit after each step.
 
