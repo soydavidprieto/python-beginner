@@ -1,9 +1,11 @@
 class Contact:
-    def __init__(self, sex):
+    def __init__(self):
         self._name = None
         self._email = None
         self._age = None
-        self.sex = sex
+
+    def __str__(self):
+        return f"name: {self.name} email: {self.email} age: {self.age}"
 
     @property
     def name(self):
