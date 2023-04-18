@@ -1,3 +1,25 @@
+def search(source, source_name='genre'):
+    print(f'Available {source_name}(s): {source}')
+    while True:
+        value = input(f'Enter {source_name}:')
+        if value in source:
+            break
+        else:
+            print(f'{source_name} {value} not found. Please try again.')
+            continue
+    return value
+
+def search_ext(source, source_name='genre', param_name='actor_name', param_type='actor' ):
+    print(f'Available {source_name}(s): {source} with {param_name}')
+    while True:
+        value = input(f'Enter {source_name}:')
+        if value in source:
+            break
+        else:
+            print(f'{source_name} {value} with {param_type} {param_name} not found. Please try again.')
+            continue
+    return value
+
 def search_movie(picked_actor):
     while True:
         entered_movie = input(' Enter movie: ')
@@ -44,46 +66,22 @@ if __name__ == '__main__':
 
     search_genre = input(' > Search by Genre: ')
     if search_genre == 'y':
-        print('Available Genres: ', genrekeys)
-        while True:
-            picked_genre = input(' Enter genre: ')
-            if picked_genre in genrekeys:
-                print('Available Movies:', genres.get(picked_genre))
-                break
-            else:
-                print('Genre ' + picked_genre + ' not found. Please try again.')
-                continue
-        while True:
-            entered_movie = input(' Enter movie: ')
-            if entered_movie in genres.get(picked_genre):
-                print('Movie to watch: ' + entered_movie + '.' + ' Genre: ' + picked_genre + '.')
-                break
-            else:
-                print('Movie ' + entered_movie + ' not found. Please try again.')
-
+        picked_genre = search(source=list(genres.keys()), source_name='genre')
+        entered_movie = search(source=genres[picked_genre], source_name='movie')
+        print('Movie to watch: ' + entered_movie + '.' + ' Genre: ' + picked_genre + '.')
     elif search_genre == 'n':
         search_actor = input(' > Search by Actor: ')
         if search_actor == 'y':
-            allactors = set()
-
+            all_actors = set()
             for x in castkeys:
                 for y in x:
-                    allactors.add(y)
-
+                    all_actors.add(y)
             actor_movies = set()
-
-            print('Available Actors: ', allactors)
-
-            found_actor = search_actors()
-
+            found_actor = search(source=list(all_actors), source_name='actor')
             for a in cast:
                 for b in cast.get(a):
                     if b == found_actor:
                         actor_movies.add(a)
 
-            print('Available movies:', actor_movies, 'with ', found_actor)
-
-            found_movie = search_movie(sa)
+            found_movie = search_ext(actor_movies, 'movie', found_actor, 'actor')
             print('Movie to watch: ' + found_movie + '.' + ' Starring: ' + found_actor + '.')
-
-
