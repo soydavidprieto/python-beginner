@@ -18,6 +18,7 @@ if __name__ == '__main__':
     my_list.append(contact)
     my_list.append(mike)
 
+    print(my_list)
 
     for contact in my_list:
         print(contact)
