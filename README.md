@@ -68,11 +68,12 @@ Python entry level course for people who are not familiar with programming conce
 
 ##### 6. Homework
 * [contacts](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/contacts)
+* [magic](https://github.com/mykytapavlov/python-beginner/tree/main/week_4/magic/README.md)
 
 ### Week 4.
 #### 7. Building console game. Part 1.
 #### 8. Building console game. Part 2.
-
+* [snake](https://github.com/mykytapavlov/python-beginner/tree/main/week_5/snake/README.md)
 
 ## What's next?
 * [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI)
