@@ -62,34 +62,18 @@ class Game:
 
         apple = (1, 2)
         self.snake.eat(apple)
-        self.board.board[apple[0]][apple[1]] = self.snake.symbol
-
         apple = (2, 2)
         self.snake.eat(apple)
-        self.board.board[apple[0]][apple[1]] = self.snake.symbol
-
         apple = (2, 3)
         self.snake.eat(apple)
-        self.board.board[apple[0]][apple[1]] = self.snake.symbol
+
+        for i, j in self.snake.body:
+            self.board.board[i][j] = self.snake.symbol
 
         self.board.show()
 
 
 if __name__ == '__main__':
     b = Board(width=4, height=4)
-
-    # lst = b.init_board()
-    #
-    # for cur_row in lst:
-    #     print(cur_row)
-
-    b.show()
-    s = Snake()
-    print(s.body)
-    s.eat((1, 2))
-    print(s.body)
-
-    s.move((1, 3))
-    print(s.body)
     game = Game()
     game.render()
