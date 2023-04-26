@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Board:
     def __init__(self, width, height, border='*'):
         self.width = width
@@ -36,11 +39,13 @@ class Board:
             i, j = snake_point
             self.board[i][j] = snake.symbol
 
-
     def show(self):
         for row in self.board:
             # print(row)
             print(' '.join(row))
+
+    def clear_board(self):
+        self.board = self.init_board()
 
 
 class Snake:
@@ -63,31 +68,42 @@ class Snake:
 
 
 class Game:
-    def __init__(self):
-        self.board = Board(width=20, height=20)
+    # def __init__(self):
+    #     self.board = Board(width=20, height=20)
+    #     self.snake = Snake()
+    def __init__(self, width=20, height=20):
+        self.width = width
+        self.height = height
+        self.board = Board(self.width, self.height)
         self.snake = Snake()
 
-    def render(self):
-        # the easiest way to place snake's body on the board
-        i, j = self.snake.body[0]
-        self.board.board[i][j] = self.snake.symbol
+    def clear(self):
+        # TODO: should clear the board to initial state.
+        self.board.clear_board()
 
+    def play(self):
         apple = (1, 2)
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
         apple = (2, 2)
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
         apple = (2, 3)
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
-        apple = (2, 4)
-        self.snake.eat(apple)
+    def render(self):
+        # the easiest way to place snake's body on the board
+        #i, j = self.snake.body[0]
+        #self.board.board[i][j] = self.snake.symbol
 
-        apple = (3, 4)
-        self.snake.eat(apple)
+        self.clear()
 
-        # TODO: your task is to update self.board.board here to render entire body of the snake now
         self.board.draw_snake(self.snake)
 
         self.board.show()
@@ -95,23 +111,4 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
-    game.render()
-
-
-    # b = Board(width=4, height=4)
-    #
-    # # lst = b.init_board()
-    # #
-    # # for cur_row in lst:
-    # #     print(cur_row)
-    #
-    # b.show()
-    #
-    # s = Snake()
-    # s.eat((1, 2))
-    # print(s.body)
-    # # [(1, 1), (1, 2)]
-
-    # s.move((1, 3))
-    # print(s.body)
-    # # [(1, 2), (1, 3)]
+    game.play()
