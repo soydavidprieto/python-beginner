@@ -90,29 +90,21 @@ class Snake:
             point = (x + 1, y)
             if point not in self.body:
                 allowed_steps.append(point)
-            # else:
-            #     print("Body contains:" + str(x+1) + "," + str(y))
 
         if x > 0:
             point = (x - 1, y)
             if point not in self.body:
                 allowed_steps.append(point)
-            # else:
-            #     print("Body contains:" + str(x - 1) + "," + str(y))
 
         if y < board_height - 1:
             point = (x, y + 1)
             if point not in self.body:
                 allowed_steps.append(point)
-            # else:
-            #     print("Body contains:" + str(x) + "," + str(y+1))
 
         if y > 0:
             point = (x, y-1)
             if point not in self.body:
                 allowed_steps.append(point)
-            # else:
-            #     print("Body contains:" + str(x) + "," + str(y-1))
 
         return allowed_steps
 
@@ -166,45 +158,43 @@ class Game:
             random_position = random.choice(allowed_positions)
             self.apple.show(random_position)
 
+    def emulate_snake_position(self):
+        allowed_positions = self.snake.choices(self.width, self.height)
+        if len(allowed_positions) == 0:
+            return None
+        else:
+            random_position = random.choice(allowed_positions)
+            return random_position
+
     def play(self):
-        #self.apple.show(position=(2, 3))
+        game_cycles = 5
+        try:
+            self.render()  # initial render of board, snake and apple
+            while game_cycles > 0:  # start our game
+                snake_i, snake_j = self.snake.body[-1]  # remember last position of snake's head
+                next_move = None
+                # TODO: find next possible position (next_move) for snake to move
+                next_move = self.emulate_snake_position()
 
-        self.init_apple()
-        self.render()
+                if next_move is None:  # there is no possible move for snake
+                    self.snake.move((snake_i + 1, snake_j + 1))  # just do one move forward for snake
+                    self.render()  # render last move
+                    GameOverError('No moves for snake!')  # end the game (snake does not have next valid move)
+                if next_move == self.apple.position:
+                    # TODO: eat apple, render this action, init new apple and render it on board
+                    self.snake.eat(self.apple)
+                    self.apple.hide()
+                    self.render()
 
-        # self.snake.move(position=(1, 2))
-        # self.render()
-        #
-        # self.snake.move(position=(2, 2))
-        # self.render()
-        #
-        # self.snake.eat(self.apple)
-        # self.apple.hide()
-        # self.render()
-        #
-        # self.apple.show(position=(4, 6))
-        #
-        # self.snake.move((2, 4))
-        # self.render()
-        #
-        # self.snake.move((2, 5))
-        # self.render()
-        #
-        # self.snake.move((2, 6))
-        # self.render()
-        #
-        # self.snake.move((3, 6))
-        # self.render()
-        #
-        # self.snake.eat(self.apple)
-        # self.apple.hide()
-        # self.render()
-        #
-        # self.apple.show(position=(8, 10))
-        # self.render()
-
-
-        #print(self.snake.choices(self.board.width, self.board.height))
+                    self.init_apple()
+                    self.render()
+                    continue  # go to next game cycle
+                # if game is not over, and snake did not eat the apple in current game cycle, then it means it can simply move on next valid position:
+                self.snake.move(next_move)
+                self.render()
+                game_cycles -= 1
+        except GameOverError:
+            print('Game Over!')
 
     def render(self):
 
