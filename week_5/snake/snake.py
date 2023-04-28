@@ -39,6 +39,11 @@ class Board:
             i, j = snake_point
             self.board[i][j] = snake.symbol
 
+    def draw_apple(self, apple):
+        if apple.visible:
+            i, j = apple.position
+            self.board[i][j] = apple.symbol
+
     def show(self):
         for row in self.board:
             # print(row)
@@ -53,10 +58,9 @@ class Snake:
         self.symbol = symbol
         self.body = [position]
 
-    def eat(self, position: tuple):
-
+    def eat(self, apple):
         # TODO: this method should append new position to snake's body
-        self.body.append(position)
+        self.body.append(apple.position)
 
     def move(self, position: tuple):
 
@@ -104,49 +108,79 @@ class Snake:
 
         return allowed_steps
 
+class Apple:
+    def __init__(self, symbol='$', position=(2, 2), visible=True):
+        self.position = position
+        self.symbol = symbol
+        self.visible = visible
+
+    def show(self, position: tuple):
+        self.visible = True
+        self.position = position
+
+    def hide(self):
+        self.visible = False
 
 class Game:
-    # def __init__(self):
-    #     self.board = Board(width=20, height=20)
-    #     self.snake = Snake()
     def __init__(self, width=20, height=20):
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
         self.snake = Snake()
+        self.apple = Apple()
 
     def clear(self):
         # TODO: should clear the board to initial state.
         self.board.clear_board()
 
     def play(self):
-        apple = (1, 2)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+        self.apple.show(position=(2, 3))
 
-        apple = (2, 2)
-        self.snake.eat(apple)
+        self.snake.move(position=(1, 2))
         self.render()
-        sleep(2)
 
-        apple = (2, 3)
-        self.snake.eat(apple)
+        self.snake.move(position=(2, 2))
         self.render()
-        sleep(2)
 
-        print(self.snake.choices(self.board.width, self.board.height))
+        self.snake.eat(self.apple)
+        self.apple.hide()
+        self.render()
+
+        self.apple.show(position=(4, 6))
+
+        self.snake.move((2, 4))
+        self.render()
+
+        self.snake.move((2, 5))
+        self.render()
+
+        self.snake.move((2, 6))
+        self.render()
+
+        self.snake.move((3, 6))
+        self.render()
+
+        self.snake.eat(self.apple)
+        self.apple.hide()
+        self.render()
+
+        self.apple.show(position=(8, 10))
+        self.render()
+
+
+        #print(self.snake.choices(self.board.width, self.board.height))
 
     def render(self):
-        # the easiest way to place snake's body on the board
-        #i, j = self.snake.body[0]
-        #self.board.board[i][j] = self.snake.symbol
 
         self.clear()
+
+        self.board.draw_apple(self.apple)
 
         self.board.draw_snake(self.snake)
 
         self.board.show()
+
+        sleep(2)
 
 
 if __name__ == '__main__':
