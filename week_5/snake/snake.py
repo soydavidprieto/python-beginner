@@ -1,5 +1,6 @@
 from time import sleep
 import random
+import math
 
 
 class GameOverError(Exception):
@@ -59,6 +60,12 @@ class Board:
 
     def clear_board(self):
         self.board = self.init_board()
+
+    @staticmethod
+    def distance(p1: tuple, p2: tuple):
+        # p1_i, p1_j = p1
+        # p2_i, p2_j = p2
+        return math.dist(p1, p2)
 
 
 class Snake:
@@ -163,8 +170,20 @@ class Game:
         if len(allowed_positions) == 0:
             return None
         else:
-            random_position = random.choice(allowed_positions)
-            return random_position
+            #random_position = random.choice(allowed_positions)
+            #return random_position
+
+            minimal_distance = Board.distance(self.apple.position, allowed_positions[0])
+            next_position = allowed_positions[0]
+
+            for i in range(len(allowed_positions)):
+                distance = Board.distance(self.apple.position, allowed_positions[i])
+                if distance < minimal_distance:
+                    minimal_distance = distance
+                    next_position = allowed_positions[i]
+
+            return next_position
+
 
     def play(self):
         game_cycles = 5
