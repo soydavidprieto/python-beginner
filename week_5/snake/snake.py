@@ -1,11 +1,16 @@
 from time import sleep
+import random
 
+
+class GameOverError(Exception):
+    pass
 
 class Board:
-    def __init__(self, width, height, border='*'):
+    def __init__(self, width, height, border='*', border_size=1):
         self.width = width
         self.height = height
-        self.boarder = border
+        self.border = border
+        self.border_size = border_size
         self.board = self.init_board()
 
     def init_board(self):
@@ -20,15 +25,18 @@ class Board:
         # ['*', ' ', ' ', '*']
         # ['*', '*', '*', '*']
 
-        for i in range(self.height):
-            if i in {0, self.height - 1}:
-                row = [self.boarder] * self.width
+        for i in range(self.height + self.border_size * 2):
+            #if i in {0, self.height - 1}:
+            if i < self.border_size or i > self.border_size + self.height - 1:
+                row = [self.border] * (self.width + self.border_size * 2)
                 board.append(row)
             else:
                 row = []
-                for j in range(self.width):
-                    if j in {0, self.width - 1}:
-                        row.append(self.boarder)
+                #for j in range(self.width):
+                for j in range(self.width + self.border_size * 2):
+                    #if j in {0, self.width - 1}:
+                    if j < self.border_size or j > self.border_size + self.width - 1:
+                        row.append(self.border)
                     else:
                         row.append(' ')
                 board.append(row)
@@ -37,12 +45,12 @@ class Board:
     def draw_snake(self, snake):
         for snake_point in snake.body:
             i, j = snake_point
-            self.board[i][j] = snake.symbol
+            self.board[i + self.border_size][j + self.border_size] = snake.symbol
 
     def draw_apple(self, apple):
         if apple.visible:
             i, j = apple.position
-            self.board[i][j] = apple.symbol
+            self.board[i + self.border_size][j + self.border_size] = apple.symbol
 
     def show(self):
         for row in self.board:
@@ -133,39 +141,67 @@ class Game:
         # TODO: should clear the board to initial state.
         self.board.clear_board()
 
+    def init_apple(self):
+        last_position = self.apple.position
+        # if we can find new place where we can set new apple on the board (new_i, new_j), re-create an apple on that position
+        # self.apple = Apple(position=(new_i, new_j))
+        # Notes:
+        # 1. this new position should not overlap with snake body
+        # 2. this new position should not overlap with the last position of an apple
+        # 3. if we can't find new position for an apple it means our game is over, so raise custom exception in that case (just place it as is in the code):
+        #  raise GameOverError('No places for apple!')
+
+        allowed_positions = []
+        for x in range(self.width):
+            for y in range(self.height):
+                position = (x, y)
+                if position == last_position:
+                    continue
+                if position in self.snake.body:
+                    continue
+                allowed_positions.append(position)
+        if len(allowed_positions) == 0:
+            raise GameOverError('No places for apple!')
+        else:
+            random_position = random.choice(allowed_positions)
+            self.apple.show(random_position)
+
     def play(self):
-        self.apple.show(position=(2, 3))
+        #self.apple.show(position=(2, 3))
 
-        self.snake.move(position=(1, 2))
+        self.init_apple()
         self.render()
 
-        self.snake.move(position=(2, 2))
-        self.render()
-
-        self.snake.eat(self.apple)
-        self.apple.hide()
-        self.render()
-
-        self.apple.show(position=(4, 6))
-
-        self.snake.move((2, 4))
-        self.render()
-
-        self.snake.move((2, 5))
-        self.render()
-
-        self.snake.move((2, 6))
-        self.render()
-
-        self.snake.move((3, 6))
-        self.render()
-
-        self.snake.eat(self.apple)
-        self.apple.hide()
-        self.render()
-
-        self.apple.show(position=(8, 10))
-        self.render()
+        # self.snake.move(position=(1, 2))
+        # self.render()
+        #
+        # self.snake.move(position=(2, 2))
+        # self.render()
+        #
+        # self.snake.eat(self.apple)
+        # self.apple.hide()
+        # self.render()
+        #
+        # self.apple.show(position=(4, 6))
+        #
+        # self.snake.move((2, 4))
+        # self.render()
+        #
+        # self.snake.move((2, 5))
+        # self.render()
+        #
+        # self.snake.move((2, 6))
+        # self.render()
+        #
+        # self.snake.move((3, 6))
+        # self.render()
+        #
+        # self.snake.eat(self.apple)
+        # self.apple.hide()
+        # self.render()
+        #
+        # self.apple.show(position=(8, 10))
+        # self.render()
 
 
         #print(self.snake.choices(self.board.width, self.board.height))
