@@ -66,6 +66,44 @@ class Snake:
         self.body.append(position)
         self.body.pop(0)
 
+    def choices(self, board_width=1, board_height=1):
+
+        # TODO: this method should return set of next possible positions
+        # where snake can move based on it's current position.
+        # Note: if next possible position is already in snake body, filter it out.
+        x, y = self.body[-1]
+
+        allowed_steps = []
+        if x < board_width - 1:
+            point = (x + 1, y)
+            if point not in self.body:
+                allowed_steps.append(point)
+            # else:
+            #     print("Body contains:" + str(x+1) + "," + str(y))
+
+        if x > 0:
+            point = (x - 1, y)
+            if point not in self.body:
+                allowed_steps.append(point)
+            # else:
+            #     print("Body contains:" + str(x - 1) + "," + str(y))
+
+        if y < board_height - 1:
+            point = (x, y + 1)
+            if point not in self.body:
+                allowed_steps.append(point)
+            # else:
+            #     print("Body contains:" + str(x) + "," + str(y+1))
+
+        if y > 0:
+            point = (x, y-1)
+            if point not in self.body:
+                allowed_steps.append(point)
+            # else:
+            #     print("Body contains:" + str(x) + "," + str(y-1))
+
+        return allowed_steps
+
 
 class Game:
     # def __init__(self):
@@ -96,6 +134,8 @@ class Game:
         self.snake.eat(apple)
         self.render()
         sleep(2)
+
+        print(self.snake.choices(self.board.width, self.board.height))
 
     def render(self):
         # the easiest way to place snake's body on the board
