@@ -1,10 +1,11 @@
-
-
 class Contact:
-    def _init_(self):
+    def __init__(self):
         self._name = None
         self._email = None
         self._age = None
+
+    def __str__(self):
+        return f'name: {self.name} email: {self.email} age: {self.age}'
 
     @property
     def name(self):
@@ -12,6 +13,7 @@ class Contact:
 
     @name.setter
     def name(self, name):
+        self._name = name.capitalize()
         if len(name) > 50:
             raise ValueError('Name is too large!')
 
@@ -21,6 +23,7 @@ class Contact:
 
     @email.setter
     def email(self, email):
+        self._email = email
         if '@' not in email or '.' not in email:
             raise ValueError('Invalid email!')
 
@@ -31,8 +34,8 @@ class Contact:
     @age.setter
     def age(self, age):
         try:
-            age = int(age)  # Python will raise ValueError if not numeric
-            if age <= 0:
+            self._age = int(age)  # Python will raise ValueError if not numeric
+            if int(age) <= 0:
                 # We ask Python to raise ValueError if <= 0
                 raise ValueError
         except ValueError:
@@ -43,10 +46,10 @@ class Contact:
 # cont_age = input('Age: ')
 
 
-new_cont = Contact()
-new_cont.name = "bguis"
-new_cont.email = "bgusi@nvuis.g"
-new_cont.age = 75
-print(f'Name: {new_cont.name}, Email: {new_cont.email}, Age: {new_cont.age}')
+# new_cont = Contact()
+# new_cont.name = "bguis"
+# new_cont.email = "bgusi@nvuis.g"
+# new_cont.age = 75
+# print(f'Name: {new_cont.name}, Email: {new_cont.email}, Age: {new_cont.age}')
 
 
