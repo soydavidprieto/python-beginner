@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Board:
     def __init__(self, width, height, border='*'):
         self.width = width
@@ -51,37 +54,60 @@ class Snake:
 
 
 class Game:
-    def __init__(self):
-        self.board = Board(width=5, height=5)
+    def __init__(self, width=20, height=20):
+        self.width = width
+        self.height = height
+        self.board = Board(self.width, self.height)
         self.snake = Snake()
 
-    def render(self):
-        # the easiest way to place snake's body on the board
-        i, j = self.snake.body[0]
-        self.board.board[i][j] = self.snake.symbol
-
+    def play(self):
         apple = (1, 2)
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
         apple = (2, 2)
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
         apple = (2, 3)
-
         self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
+        apple = (2, 4)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
+        apple = (3, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
+    def clear(self):
+        for i in range(len(self.board.board)):
+            board_item = self.board.board[i]
+            for j in range(len(board_item)):
+                if self.board.board[i][j] == self.snake.symbol:
+                    self.board.board[i][j] = ' '
+
+    def render(self):
+        self.clear()
+        # the easiest way to place snake's body on the board
+        i, j = self.snake.body[0]
+        self.board.board[i][j] = self.snake.symbol
         for (x, y) in self.snake.body:
             self.board.board[x][y] = self.snake.symbol
-
-
-
-
-            # TODO: your task is to update self.board.board here to render entire body of the snake now
-        ...
-
         self.board.show()
 
 
 if __name__ == '__main__':
     game = Game()
-    game.render()
+    game.play()
