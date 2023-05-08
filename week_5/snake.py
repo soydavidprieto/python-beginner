@@ -1,3 +1,6 @@
+from time import sleep
+
+
 class Board:
     def __init__(self, width, height, border='*'):
         self.width = width
@@ -40,14 +43,71 @@ class Board:
 class Snake:
     def __init__(self, symbol='o', position=(1, 1)):
         self.symbol = symbol
-        self.position = position
+        self.body = [position]
+
+    def eat(self, position: tuple):
+        self.body.append(position)
+
+    def move(self, position: tuple):
+        self.body.append(position)
+        self.body.pop(0)
 
 
 class Game:
-    def __init__(self):
-        self.board = Board(width=4, height=4)
+    def __init__(self, width=20, height=20):
+        self.width = width
+        self.height = height
+        self.board = Board(self.width, self.height)
         self.snake = Snake()
 
+    def play(self):
+        apple = (1, 2)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
 
+        apple = (2, 2)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 3)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 4)
+        self.snake.eat(apple)
+        self.render()
+        sleep(2)
+
+        apple = (2, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
+        apple = (3, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(2)
+
+    def clear(self):
+        for i in range(len(self.board.board)):
+            board_item = self.board.board[i]
+            for j in range(len(board_item)):
+                if self.board.board[i][j] == self.snake.symbol:
+                    self.board.board[i][j] = ' '
 
     def render(self):
+        self.clear()
+        # the easiest way to place snake's body on the board
+        i, j = self.snake.body[0]
+        self.board.board[i][j] = self.snake.symbol
+        for (x, y) in self.snake.body:
+            self.board.board[x][y] = self.snake.symbol
+        self.board.show()
+
+
+if __name__ == '__main__':
+    game = Game()
+    game.play()
