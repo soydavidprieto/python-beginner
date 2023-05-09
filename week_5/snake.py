@@ -65,6 +65,7 @@ class Snake:
             possible_move.add((i - 1, j))
         return possible_move
 
+
 class Game:
     def __init__(self, width=20, height=20):
         self.width = width
