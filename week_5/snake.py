@@ -52,6 +52,18 @@ class Snake:
         self.body.append(position)
         self.body.pop(0)
 
+    def choices(self):
+        possible_move = set()
+        i, j = self.body[-1]
+        if (i, j + 1) not in self.body:
+            possible_move.add((i, j + 1))
+        if (i, j - 1) not in self.body:
+            possible_move.add((i, j - 1))
+        if (i + 1, j) not in self.body:
+            possible_move.add((i + 1, j))
+        if (i - 1, j) not in self.body:
+            possible_move.add((i - 1, j))
+        return possible_move
 
 class Game:
     def __init__(self, width=20, height=20):
@@ -111,3 +123,5 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     game.play()
+    print(game.snake.body[-1])
+    print(game.snake.choices())
