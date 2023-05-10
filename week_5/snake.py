@@ -66,12 +66,19 @@ class Snake:
         return possible_move
 
 
+class Apple:
+    def __init__(self, symbol='$', position=(5, 5)):
+        self.position = position
+        self.symbol = symbol
+
+
 class Game:
     def __init__(self, width=20, height=20):
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
         self.snake = Snake()
+        self.apple = Apple()
 
     def play(self):
         apple = (1, 2)
@@ -118,11 +125,13 @@ class Game:
         self.board.board[i][j] = self.snake.symbol
         for (x, y) in self.snake.body:
             self.board.board[x][y] = self.snake.symbol
+        a, b = self.apple.position
+        self.board.board[a][b] = self.apple.symbol
         self.board.show()
+        sleep(2)
 
 
 if __name__ == '__main__':
     game = Game()
     game.play()
-    print(game.snake.body[-1])
     print(game.snake.choices())
