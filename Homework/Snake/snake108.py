@@ -3,8 +3,24 @@ import random
 import math
 
 
+class Color:
+    """
+    ANSI Colors for terminal
+    """
+    HEADER: str = '\033[95m'
+    OKBLUE: str = '\033[94m'
+    OKCYAN: str = '\033[96m'
+    OKGREEN: str = '\033[92m'
+    WARNING: str = '\033[93m'
+    FAIL: str = '\033[91m'
+    ENDC: str = '\033[0m'
+    BOLD: str = '\033[1m'
+    UNDERLINE: str = '\033[4m'
+    PINK: str = '\033[38;5;206m'
+
+
 class Board:
-    def __init__(self, width, height, border='*'):
+    def _init_(self, width, height, border=(Color.WARNING + '*' + Color.ENDC)):
         self.width = width
         self.height = height
         self.border = border
@@ -36,9 +52,23 @@ class Board:
                 board.append(row)
         return board
 
+    @staticmethod
+    def colored(symbol: str) -> str:
+        if symbol == '*':
+            return f'{Color.WARNING}{symbol}{Color.ENDC}'
+        elif symbol == '@':
+            return f'{Color.FAIL}{symbol}{Color.ENDC}'
+        elif symbol == 'o':
+            return f'{Color.OKGREEN}{symbol}{Color.ENDC}'
+        elif symbol == '%':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
+        elif symbol == '^':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
+        else:
+            return symbol
+
     def show(self):
         for row in self.board:
-            # print(row)
             print(' '.join(row))
 
     def clear_board(self):
@@ -49,50 +79,39 @@ class Board:
         p1_i, p1_j = p1
         p2_i, p2_j = p2
         return math.sqrt(math.pow(p2_i - p1_i, 2) +
-                         math.pow(p2_j - p1_j, 2) * 1.0)  # `TODO: place formula here`
+                         math.pow(p2_j - p1_j, 2) * 1.0)
 
 
 class Snake:
-    def __init__(self, symbol='o', position=(1, 1)):
+    def _init_(self, head=(Color.PINK + '%' + Color.ENDC), symbol=(Color.OKGREEN + 'o' + Color.ENDC), tail=(Color.PINK + '^' + Color.ENDC), position=(1, 1)):
         self.symbol = symbol
         self.body = [position]
+        self.head = head
+        self.tail = tail
 
     def eat(self, position: tuple):
         self.body.append(position)
 
     def move(self, position: tuple):
-        # by means append to the body next position and
-        # pop from the body the position at 0 index at the same time.
         self.body.append(position)
         self.body.pop(0)
 
     def choices(self):
-        # TODO: this method should return set of next possible positions
-        # where snake can move based on it's current position.
-        # Note: if next possible position is already in snake body, filter it out.
         i, j = self.body[-1]
         choice = []
         if ((i + 1), j) not in self.body and i < (game.width - 2):
             choice.append((i + 1, j))
-        else:
-            choice = choice
         if (i, (j + 1)) not in self.body and j < (game.height - 2):
             choice.append((i, j + 1))
-        else:
-            choice = choice
         if ((i - 1), j) not in self.body and i > 1:
             choice.append((i - 1, j))
-        else:
-            choice = choice
         if (i, (j - 1)) not in self.body and j > 1:
             choice.append((i, j - 1))
-        else:
-            choice = choice
         return choice
 
 
 class Apple:
-    def __init__(self, symbol='$', position=(2, 2)):
+    def _init_(self, symbol=(Color.FAIL + '$' + Color.ENDC), position=(2, 2)):
         self.position = position
         self.symbol = symbol
 
@@ -105,7 +124,7 @@ class GameOverError(Exception):
 
 
 class Game:
-    def __init__(self, width=5, height=5):
+    def _init_(self, width=7, height=7):
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
@@ -128,20 +147,11 @@ class Game:
             position = random.choice(possible_positions)
             self.apple = Apple(position=position)
             self.board.show()
-        # TODO:
-        # if we can find new place where we can set new apple on the board (new_i, new_j), re-create an apple on that position
-        # self.apple = Apple(position=(new_i, new_j))
-        # Notes:
-        # 1. this new position should not overlap with snake body
-        # 2. this new position should not overlap with the last position of an apple
-        # 3. if we can't find new position for an apple it means our game is over, so raise custom exception in that case (just place it as is in the code):
-        #  raise GameOverError('No places for apple!')
 
     def play(self):
-        game_cycles = 30
         try:
             self.render()  # initial render of board, snake and apple
-            while game_cycles > 0:  # start our game
+            while True:  # start our game
                 snake_i, snake_j = self.snake.body[-1]  # remember last position of snake's head
 
                 # TODO: find next possible position (next_move) for snake to move
@@ -155,12 +165,14 @@ class Game:
                         next_distance = Board.distance(self.apple.position, possible_positions[x])
                         if next_distance < actual_distance and possible_positions[x] not in self.snake.body:
                             next_position = possible_positions[x]
-                        # else:
-                        #     next_position = random.choice(possible_positions)
-
+                        else:
+                            if next_distance < actual_distance and possible_positions[x] in self.snake.body:
+                                next_position = random.choice(possible_positions)
+                            else:
+                                continue
                 next_move = next_position
 
-                if next_move == None:  # there is no possible move for snake
+                if next_move is None:  # there is no possible move for snake
                     self.snake.move((snake_i + 1, snake_j + 1))  # just do one move forward for snake
                     self.render()  # render last move
                     raise GameOverError('No moves for snake!')  # end the game (snake does not have next valid move)
@@ -174,7 +186,6 @@ class Game:
                 # if game is not over, and snake did not eat the apple in current game cycle, then it means it can simply move on next valid position:
                 self.snake.move(next_move)
                 self.render()
-                game_cycles -= 1
         except GameOverError:
             print('Game Over!')
 
@@ -185,14 +196,17 @@ class Game:
         self.clear()
         i, j = self.apple.position
         self.board.board[i][j] = self.apple.symbol
-        i, j = self.snake.body[0]
-        self.board.board[i][j] = self.snake.symbol
-        for (x, y) in self.snake.body:
+        i, j = self.snake.body[-1]
+        self.board.board[i][j] = self.snake.head
+        if len(self.snake.body) > 1:
+            i, j = self.snake.body[0]
+            self.board.board[i][j] = self.snake.tail
+        for (x, y) in self.snake.body[1:-1]:
             self.board.board[x][y] = self.snake.symbol
         self.board.show()
-        # sleep(1)
+        sleep(1)
 
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     game = Game()
     game.play()
