@@ -1,3 +1,4 @@
+import random
 from time import sleep
 
 
@@ -80,43 +81,74 @@ class Game:
         self.snake = Snake()
         self.apple = Apple()
 
+    def init_apple(self):
+        global new_positon
+        try:
+            last_position = self.apple.position
+            if self.snake.body[-1] == last_position:
+                self.snake.eat(self.apple.position)
+                for (i, j) in self.board.board:
+                    if (i, j) not in self.snake.body:
+                        new_i = random.randrange(1, 20)
+                        new_j = random.randrange(1, 20)
+                        new_positon = new_positon[new_i][new_j]
+            return new_positon
+        except GameOverError:
+            print("There is no free space for apple, the game ended")
+
     def play(self):
         apple = (1, 2)
-        self.snake.eat(apple)
+        self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
 
         apple = (2, 2)
-        self.snake.eat(apple)
+        self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
 
         apple = (2, 3)
-        self.snake.eat(apple)
+        self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
 
         apple = (2, 4)
-        self.snake.eat(apple)
+        self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
 
         apple = (2, 5)
         self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
 
         apple = (3, 5)
         self.snake.move(apple)
         self.render()
-        sleep(2)
+        sleep(1)
+
+        apple = (4, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(1)
+
+        apple = (5, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(1)
+
+        apple = (6, 5)
+        self.snake.move(apple)
+        self.render()
+        sleep(1)
 
     def clear(self):
-        for i in range(len(self.board.board)):
-            board_item = self.board.board[i]
-            for j in range(len(board_item)):
-                if self.board.board[i][j] == self.snake.symbol:
-                    self.board.board[i][j] = ' '
+        # for i in range(len(self.board.board)):
+        #     board_item = self.board.board[i]
+        #     for j in range(len(board_item)):
+        #         if self.board.board[i][j] == self.snake.symbol:
+        #             self.board.board[i][j] = ' '
+        self.board = Board(self.width, self.height)
 
     def render(self):
         self.clear()
@@ -129,6 +161,10 @@ class Game:
         self.board.board[a][b] = self.apple.symbol
         self.board.show()
         sleep(2)
+
+
+class GameOverError(Exception):
+    pass
 
 
 if __name__ == '__main__':
