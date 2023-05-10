@@ -20,7 +20,7 @@ class Color:
 
 
 class Board:
-    def _init_(self, width, height, border=(Color.WARNING + '*' + Color.ENDC)):
+    def __init__(self, width, height, border=(Color.WARNING + '*' + Color.ENDC)):
         self.width = width
         self.height = height
         self.border = border
@@ -83,7 +83,7 @@ class Board:
 
 
 class Snake:
-    def _init_(self, head=(Color.PINK + '%' + Color.ENDC), symbol=(Color.OKGREEN + 'o' + Color.ENDC), tail=(Color.PINK + '^' + Color.ENDC), position=(1, 1)):
+    def __init__(self, head=(Color.PINK + '%' + Color.ENDC), symbol=(Color.OKGREEN + 'o' + Color.ENDC), tail=(Color.PINK + '^' + Color.ENDC), position=(1, 1)):
         self.symbol = symbol
         self.body = [position]
         self.head = head
@@ -111,7 +111,7 @@ class Snake:
 
 
 class Apple:
-    def _init_(self, symbol=(Color.FAIL + '$' + Color.ENDC), position=(2, 2)):
+    def __init__(self, symbol=(Color.FAIL + '$' + Color.ENDC), position=(2, 2)):
         self.position = position
         self.symbol = symbol
 
@@ -124,7 +124,7 @@ class GameOverError(Exception):
 
 
 class Game:
-    def _init_(self, width=7, height=7):
+    def __init__(self, width=7, height=7):
         self.width = width
         self.height = height
         self.board = Board(self.width, self.height)
@@ -207,6 +207,6 @@ class Game:
         sleep(1)
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     game = Game()
     game.play()
