@@ -99,13 +99,13 @@ class Snake:
     def choices(self):
         i, j = self.body[-1]
         choice = []
-        if ((i + 1), j) not in self.body and i < (game.width - 1):
+        if ((i + 1), j) not in self.body and i < (game.width - 2):
             choice.append((i + 1, j))
-        if (i, (j + 1)) not in self.body and j < (game.height - 1):
+        if (i, (j + 1)) not in self.body and j < (game.height - 2):
             choice.append((i, j + 1))
-        if ((i - 1), j) not in self.body and i > 0:
+        if ((i - 1), j) not in self.body and i > 1:
             choice.append((i - 1, j))
-        if (i, (j - 1)) not in self.body and j > 0:
+        if (i, (j - 1)) not in self.body and j > 1:
             choice.append((i, j - 1))
         return choice
 
@@ -163,7 +163,7 @@ class Game:
                     next_distance = self.board.distance(self.apple.position, possible_positions[x])
                     if actual_distance is None:
                         actual_distance = next_distance
-                    if next_distance < actual_distance:
+                    if next_distance <= actual_distance: #added "="
                         next_position = possible_positions[x]
                     else:
                         continue
