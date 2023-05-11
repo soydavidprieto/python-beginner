@@ -79,7 +79,7 @@ class Board:
         p1_i, p1_j = p1
         p2_i, p2_j = p2
         return math.sqrt(math.pow(p2_i - p1_i, 2) +
-                         math.pow(p2_j - p1_j, 2) * 1.0)
+                         math.pow(p2_j - p1_j, 2))
 
 
 class Snake:
@@ -99,13 +99,13 @@ class Snake:
     def choices(self):
         i, j = self.body[-1]
         choice = []
-        if ((i + 1), j) not in self.body and i < (game.width - 2):
+        if ((i + 1), j) not in self.body and i < (game.width - 1):
             choice.append((i + 1, j))
-        if (i, (j + 1)) not in self.body and j < (game.height - 2):
+        if (i, (j + 1)) not in self.body and j < (game.height - 1):
             choice.append((i, j + 1))
-        if ((i - 1), j) not in self.body and i > 1:
+        if ((i - 1), j) not in self.body and i > 0:
             choice.append((i - 1, j))
-        if (i, (j - 1)) not in self.body and j > 1:
+        if (i, (j - 1)) not in self.body and j > 0:
             choice.append((i, j - 1))
         return choice
 
@@ -156,20 +156,17 @@ class Game:
 
                 # TODO: find next possible position (next_move) for snake to move
                 possible_positions = self.snake.choices()
-                if len(possible_positions) == 0:
-                    next_position = None
-                else:
+                next_position = None
                     # next_move = random.choice(possible_positions)
-                    actual_distance = Board.distance(self.apple.position, self.snake.body[-1])
-                    for x in range(len(possible_positions)):
-                        next_distance = Board.distance(self.apple.position, possible_positions[x])
-                        if next_distance < actual_distance and possible_positions[x] not in self.snake.body:
-                            next_position = possible_positions[x]
-                        else:
-                            if next_distance < actual_distance and possible_positions[x] in self.snake.body:
-                                next_position = random.choice(possible_positions)
-                            else:
-                                continue
+                actual_distance = None #self.board.distance(self.apple.position, self.snake.body[-1])
+                for x in range(len(possible_positions)):
+                    next_distance = self.board.distance(self.apple.position, possible_positions[x])
+                    if actual_distance is None:
+                        actual_distance = next_distance
+                    if next_distance < actual_distance:
+                        next_position = possible_positions[x]
+                    else:
+                        continue
                 next_move = next_position
 
                 if next_move is None:  # there is no possible move for snake
@@ -179,7 +176,7 @@ class Game:
                 if next_move == self.apple.position:
                     # TODO: eat apple, render this action, init new apple and render it on board
                     self.snake.eat(self.apple.position)
-                    # self.render()
+                    self.render()
                     self.init_apple()
                     self.render()
                     continue  # go to next game cycle
@@ -201,8 +198,9 @@ class Game:
         if len(self.snake.body) > 1:
             i, j = self.snake.body[0]
             self.board.board[i][j] = self.snake.tail
-        for (x, y) in self.snake.body[1:-1]:
-            self.board.board[x][y] = self.snake.symbol
+        if len(self.snake.body) > 2:
+            for (x, y) in self.snake.body[1:-1]:
+                self.board.board[x][y] = self.snake.symbol
         self.board.show()
         sleep(1)
 

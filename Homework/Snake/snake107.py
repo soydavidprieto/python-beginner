@@ -190,7 +190,7 @@ class Game:
         for (x, y) in self.snake.body:
             self.board.board[x][y] = self.snake.symbol
         self.board.show()
-        # sleep(1)
+        sleep(1)
 
 
 if __name__ == '__main__':
