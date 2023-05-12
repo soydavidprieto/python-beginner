@@ -82,22 +82,21 @@ class Game:
         self.apple = Apple()
 
     def init_apple(self):
-        global new_positon
-        try:
-            last_position = self.apple.position
-            if self.snake.body[-1] == last_position:
-                self.snake.eat(self.apple.position)
-                for (i, j) in self.board.board:
-                    if (i, j) not in self.snake.body:
-                        new_i = random.randrange(1, 20)
-                        new_j = random.randrange(1, 20)
-                        new_positon = new_positon[new_i][new_j]
-            return new_positon
-        except GameOverError:
-            print("There is no free space for apple, the game ended")
+        last_position = self.apple.position
+        empty_idx = []
+        for ind_x, x in enumerate(self.board.board):
+            for idx_y, y in enumerate(x):
+                if y == " ":
+                    empty_idx.append((ind_x, idx_y))
+        if not empty_idx:
+            raise GameOverError('No places for apple!')
+        next_apple_id = random.randrange(len(empty_idx))
+        next_apple = empty_idx[next_apple_id]
+        self.apple = Apple(position=next_apple)
+        # return next_apple
 
     def play(self):
-        apple = (1, 2)
+        apple = (1, 1)
         self.snake.move(apple)
         self.render()
         sleep(1)
@@ -108,36 +107,6 @@ class Game:
         sleep(1)
 
         apple = (2, 3)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (2, 4)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (2, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (3, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (4, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (5, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(1)
-
-        apple = (6, 5)
         self.snake.move(apple)
         self.render()
         sleep(1)
@@ -171,3 +140,4 @@ if __name__ == '__main__':
     game = Game()
     game.play()
     print(game.snake.choices())
+    print(game.init_apple())
