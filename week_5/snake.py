@@ -96,6 +96,32 @@ class Game:
         # return next_apple
 
     def play(self):
+        game_cycles = 5
+        try:
+            self.render()
+            while game_cycles > 0:
+                snake_i, snake_j = self.snake.body[-1]
+                next_move = None
+                for i, j in self.snake.choices():
+                    if i != self.board.board:
+
+
+
+                next_move = random.choice(list(self.snake.choices()))
+                if next_move is None:  # there is no possible move for snake
+                    self.snake.move((snake_i + 1, snake_j + 1))  # just do one move forward for snake
+                    self.render()  # render last move
+                    GameOverError('No moves for snake!')  # end the game (snake does not have next valid move)
+                if next_move == self.apple.position:
+                    self.snake.eat(self.apple.position)
+                    self.init_apple()
+                    self.render()
+                    continue  # go to next game cycle
+                self.snake.move(next_move)
+                self.render()
+                game_cycles -= 1
+        except GameOverError:
+            print('Game Over!')
         apple = (1, 1)
         self.snake.move(apple)
         self.render()
