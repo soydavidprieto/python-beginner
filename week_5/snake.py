@@ -65,6 +65,10 @@ class Snake:
             possible_move.add((i - 1, j))
         return possible_move
 
+class Apple:
+    def __init__(self, symbol='$', position=(2, 2)):
+        self.position = position
+        self.symbol = symbol
 
 class Game:
     def __init__(self, width=20, height=20):
@@ -72,6 +76,7 @@ class Game:
         self.height = height
         self.board = Board(self.width, self.height)
         self.snake = Snake()
+        self.apple = Apple()
 
     def play(self):
         apple = (1, 2)
