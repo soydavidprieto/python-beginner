@@ -17,7 +17,7 @@ class ContactList:
         str_i = []
         for i in self.contact_lst:
             str_i.append((str(i)))
-        return str(str_i
+        return str(str_i)
 
     # maximum = 3
     # contact = {

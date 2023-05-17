@@ -1,3 +1,4 @@
+import random
 from time import sleep
 
 
@@ -65,10 +66,18 @@ class Snake:
             possible_move.add((i - 1, j))
         return possible_move
 
+
 class Apple:
     def __init__(self, symbol='$', position=(2, 2)):
         self.position = position
         self.symbol = symbol
+
+
+class Apple:
+    def __init__(self, symbol='$', position=(5, 5)):
+        self.position = position
+        self.symbol = symbol
+
 
 class Game:
     def __init__(self, width=20, height=20):
@@ -78,43 +87,64 @@ class Game:
         self.snake = Snake()
         self.apple = Apple()
 
+    def init_apple(self):
+        last_position = self.apple.position
+        empty_idx = []
+        for ind_x, x in enumerate(self.board.board):
+            for idx_y, y in enumerate(x):
+                if y == " ":
+                    empty_idx.append((ind_x, idx_y))
+        if not empty_idx:
+            raise GameOverError('No places for apple!')
+        next_apple_id = random.randrange(len(empty_idx))
+        next_apple = empty_idx[next_apple_id]
+        self.apple = Apple(position=next_apple)
+        # return next_apple
+
     def play(self):
-        apple = (1, 2)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+        game_cycles = 20
+        try:
+            self.render()
+            while game_cycles > 0:
+                snake_i, snake_j = self.snake.body[-1]
+                next_move = None
+                valid_board = []
+                valid_choice = []
+                for inx_i, i in enumerate(self.board.board):
+                    for inx_j, j in enumerate(i):
+                        if j == "*":
+                            continue
+                        else:
+                            valid_board.append((inx_i, inx_j))
+                for valid_c in self.snake.choices():
+                    if valid_c in valid_board:
+                        valid_choice.append(valid_c)
 
-        apple = (2, 2)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
+                #next_move = random.choice(list(self.snake.choices()))
+                next_move = random.choice(valid_choice)
+                if next_move is None:  # there is no possible move for snake
+                    self.snake.move((snake_i + 1, snake_j + 1))  # just do one move forward for snake
+                    self.render()  # render last move
+                    GameOverError('No moves for snake!')  # end the game (snake does not have next valid move)
+                if next_move == self.apple.position:
+                    self.snake.eat(self.apple.position)
+                    self.init_apple()
+                    self.render()
+                    continue  # go to next game cycle
+                self.snake.move(next_move)
+                self.render()
+                game_cycles -= 1
+        except GameOverError:
+            print('Game Over!')
 
-        apple = (2, 3)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
-
-        apple = (2, 4)
-        self.snake.eat(apple)
-        self.render()
-        sleep(2)
-
-        apple = (2, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(2)
-
-        apple = (3, 5)
-        self.snake.move(apple)
-        self.render()
-        sleep(2)
 
     def clear(self):
-        for i in range(len(self.board.board)):
-            board_item = self.board.board[i]
-            for j in range(len(board_item)):
-                if self.board.board[i][j] == self.snake.symbol:
-                    self.board.board[i][j] = ' '
+        # for i in range(len(self.board.board)):
+        #     board_item = self.board.board[i]
+        #     for j in range(len(board_item)):
+        #         if self.board.board[i][j] == self.snake.symbol:
+        #             self.board.board[i][j] = ' '
+        self.board = Board(self.width, self.height)
 
     def render(self):
         self.clear()
@@ -123,11 +153,18 @@ class Game:
         self.board.board[i][j] = self.snake.symbol
         for (x, y) in self.snake.body:
             self.board.board[x][y] = self.snake.symbol
+        a, b = self.apple.position
+        self.board.board[a][b] = self.apple.symbol
         self.board.show()
+        sleep(2)
+
+
+class GameOverError(Exception):
+    pass
 
 
 if __name__ == '__main__':
     game = Game()
     game.play()
-    print(game.snake.body[-1])
     print(game.snake.choices())
+    print(game.init_apple())
