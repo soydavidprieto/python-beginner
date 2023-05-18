@@ -73,12 +73,6 @@ class Apple:
         self.symbol = symbol
 
 
-class Apple:
-    def __init__(self, symbol='$', position=(5, 5)):
-        self.position = position
-        self.symbol = symbol
-
-
 class Game:
     def __init__(self, width=20, height=20):
         self.width = width
