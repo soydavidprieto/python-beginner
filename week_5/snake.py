@@ -14,8 +14,7 @@ class Board:
     def distance(p1: tuple, p2: tuple):
         p1_i, p1_j = p1
         p2_i, p2_j = p2
-        p1p2 = (p2_i - p1_i) ** 2 + (p2_j - p1_j) ** 2
-        return math.sqrt(p1p2)
+        return math.sqrt((p2_i - p1_i) ** 2 + (p2_j - p1_j) ** 2)
 
     def init_board(self):
         board = []
@@ -112,6 +111,7 @@ class Game:
                 next_move = None
                 valid_board = []
                 valid_choice = []
+                shortest_way = {}
                 for inx_i, i in enumerate(self.board.board):
                     for inx_j, j in enumerate(i):
                         if j == "*":
@@ -121,7 +121,9 @@ class Game:
                 for valid_c in self.snake.choices():
                     if valid_c in valid_board:
                         valid_choice.append(valid_c)
-                next_move = random.choice(valid_choice)
+                for move in valid_choice:
+                    shortest_way.update({move: Board.distance(move, self.apple.position)})
+                next_move = min(shortest_way, key=shortest_way.get)
                 if next_move is None:  # there is no possible move for snake
                     self.snake.move((snake_i + 1, snake_j + 1))  # just do one move forward for snake
                     self.render()  # render last move
@@ -164,6 +166,7 @@ class GameOverError(Exception):
 
 if __name__ == '__main__':
     game = Game()
+    game.play()
     game.play()
     print(game.snake.choices())
     print(game.init_apple())
