@@ -9,6 +9,20 @@ class Board:
         self.height = height
         self.boarder = border
         self.board = self.init_board()
+    @staticmethod
+    def colored(symbol: str) -> str:
+        if symbol == '*':
+            return f'{Color.WARNING}{symbol}{Color.ENDC}'
+        elif symbol == '@':
+            return f'{Color.FAIL}{symbol}{Color.ENDC}'
+        elif symbol == 'o':
+            return f'{Color.OKGREEN}{symbol}{Color.ENDC}'
+        elif symbol == '%':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
+        elif symbol == '^':
+            return f'{Color.PINK}{symbol}{Color.ENDC}'
+        else:
+            return symbol
 
     @staticmethod
     def distance(p1: tuple, p2: tuple):
@@ -30,13 +44,13 @@ class Board:
 
         for i in range(self.height):
             if i in {0, self.height - 1}:
-                row = [self.boarder] * self.width
+                row = [Board.colored(self.boarder)] * self.width
                 board.append(row)
             else:
                 row = []
                 for j in range(self.width):
                     if j in {0, self.width - 1}:
-                        row.append(self.boarder)
+                        row.append(Board.colored(self.boarder))
                     else:
                         row.append(' ')
                 board.append(row)
@@ -103,10 +117,10 @@ class Game:
         # return next_apple
 
     def play(self):
-        game_cycles = 20
+        #game_cycles = 20
         try:
             self.render()
-            while game_cycles > 0:
+            while True:
                 snake_i, snake_j = self.snake.body[-1]
                 next_move = None
                 valid_board = []
@@ -135,7 +149,7 @@ class Game:
                     continue  # go to next game cycle
                 self.snake.move(next_move)
                 self.render()
-                game_cycles -= 1
+                #game_cycles -= 1
         except GameOverError:
             print('Game Over!')
 
@@ -153,20 +167,36 @@ class Game:
         i, j = self.snake.body[0]
         self.board.board[i][j] = self.snake.symbol
         for (x, y) in self.snake.body:
-            self.board.board[x][y] = self.snake.symbol
+            if (x, y) == self.snake.body[-1]:
+                self.board.board[x][y] = Board.colored("%")
+            elif (x, y) == self.snake.body[0]:
+                self.board.board[x][y] = Board.colored("^")
+            else:
+                self.board.board[x][y] = Board.colored("o")
         a, b = self.apple.position
-        self.board.board[a][b] = self.apple.symbol
+        self.board.board[a][b] = Board.colored("@")
         self.board.show()
         sleep(2)
 
 
 class GameOverError(Exception):
     pass
-
+class Color:
+    """
+    ANSI Colors for terminal
+    """
+    HEADER: str = '\033[95m'
+    OKBLUE: str = '\033[94m'
+    OKCYAN: str = '\033[96m'
+    OKGREEN: str = '\033[92m'
+    WARNING: str = '\033[93m'
+    FAIL: str = '\033[91m'
+    ENDC: str = '\033[0m'
+    BOLD: str = '\033[1m'
+    UNDERLINE: str = '\033[4m'
+    PINK: str = '\033[38;5;206m'
 
 if __name__ == '__main__':
     game = Game()
     game.play()
     game.play()
-    print(game.snake.choices())
-    print(game.init_apple())
