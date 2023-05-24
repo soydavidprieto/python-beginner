@@ -49,9 +49,11 @@ class Board:
 
 
 class Snake:
-    def __init__(self, symbol='o', position=(1, 1)):
+    def __init__(self, symbol='o', tail='^', head='%', position=(1, 1)):
         self.symbol = symbol
         self.body = [position]
+        self.tail = tail
+        self.head = head
 
     def eat(self, position: tuple):
         self.body.append(position)
@@ -103,10 +105,9 @@ class Game:
         # return next_apple
 
     def play(self):
-        game_cycles = 20
         try:
             self.render()
-            while game_cycles > 0:
+            while True:
                 snake_i, snake_j = self.snake.body[-1]
                 next_move = None
                 valid_board = []
@@ -135,7 +136,6 @@ class Game:
                     continue  # go to next game cycle
                 self.snake.move(next_move)
                 self.render()
-                game_cycles -= 1
         except GameOverError:
             print('Game Over!')
 
@@ -150,10 +150,14 @@ class Game:
     def render(self):
         self.clear()
         # the easiest way to place snake's body on the board
-        i, j = self.snake.body[0]
-        self.board.board[i][j] = self.snake.symbol
+        # i, j = self.snake.body[0]
+        # self.board.board[i][j] = self.snake.symbol
         for (x, y) in self.snake.body:
             self.board.board[x][y] = self.snake.symbol
+        for (i, j) in self.snake.body:
+            if self.board.board[i][j] == self.snake.body[0]:
+                self.board.board[i][j] = self.snake.head
+
         a, b = self.apple.position
         self.board.board[a][b] = self.apple.symbol
         self.board.show()
