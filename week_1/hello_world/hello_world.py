@@ -1,2 +1,3 @@
-if __name__ == '__main__':
-    print('Task 1. Hello world.')
+# Task1
+hello_w = "Hello World!"
+print("Hello World!")
