@@ -1,2 +1,2 @@
-if __name__ == '__main__':
-    print('Task 7. String slice')
+c = "The ways we work at SoftServe change"
+print(c[3:16])
