@@ -1,2 +1,2 @@
-user_input = input("Here my input")
+user_input = input("Here my input:")
 print(user_input)
