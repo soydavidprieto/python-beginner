@@ -1,2 +1,9 @@
-if __name__ == '__main__':
-    print('Task 8. Is greater?')
+
+a = int (input('Insert a number: '))
+b = int (input('inset another number: '))
+
+if a > b :
+    print(a, " is greater than ", b)
+    
+else :  
+    print(b, 'is greater than ', a)
