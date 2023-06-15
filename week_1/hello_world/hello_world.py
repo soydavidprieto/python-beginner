@@ -1,2 +1,2 @@
 if __name__ == '__main__':
-    print('Task 1. Hello world.')
+    print('Task 1. Hello world')
