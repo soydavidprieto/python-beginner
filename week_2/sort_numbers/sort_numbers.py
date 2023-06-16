@@ -1,2 +1,4 @@
-if __name__ == '__main__':
-    print('Task 10. Sort numbers')
+userinput = [5, 3, 10, 1]
+
+sortList = sorted(userinput)
+print(sortList)
