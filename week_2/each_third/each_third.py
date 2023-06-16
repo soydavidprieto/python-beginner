@@ -1,2 +1,5 @@
-if __name__ == '__main__':
-    print('Task 11. Each third')
+Elements = input('Enter elements of a list separated by space ')
+print("\n")
+listOfElements = Elements.split()
+# print list
+print('list: ', listOfElements)
