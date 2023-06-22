@@ -1,5 +1,7 @@
-x = input('Enter a coordinate for X: ')
-y = input('Enter a coordinate for Y: ')
-z = input('Enter a coordinate for Z: ')
-Coordinate = list [x, y, z]
-print('Coordinate ' , Coordinate)
+x= input("Insert a value: ")
+y= input("Insert a value: ")
+z= input("Insert a value: ")
+
+coordinate = (x, y, z)
+x, y, z = coordinate
+print(f'x: {x}, y: {y}, z: {z}')
