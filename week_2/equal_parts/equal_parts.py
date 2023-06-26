@@ -1,2 +1,4 @@
-element = list(input('Insert ten elements: '))
-print(element[0::2])
+import itertools
+from itertools import batched
+for batch in batched("ABCDEFGHIJ", 4):
+    print(batch)
