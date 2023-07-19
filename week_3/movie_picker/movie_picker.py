@@ -1,13 +1,5 @@
 
 
-GENRES = {
-    'comedy': ['Meet the Parents', 'Anger Management'],
-    'adventures': ['Mummy'],
-    'romantic': ['Vanilla Sky', 'Meet Joe Black'],
-    'drama': ['Meet Joe Black'],
-    'thriller': ['Vanilla Sky'],
-    'action': ['Mission Impossible']
-}
 
 
 ACTORS = {
@@ -29,7 +21,7 @@ searchGender = input('Insert a genere: ')
 if searchGender == 'comedy' :
     print(GENRES['comedy'])
 
-elif searchGender== 'adventures':
+elif searchGende r== 'adventures':
     print(GENRES['adventures'])
     
 elif searchGender == 'romantic':
@@ -46,9 +38,8 @@ elif searchGender == 'action' :
 
 else :
     print('The genere is not valid', (GENRES))
-    
 
-#Actor
+# Actor
 ACTORSAcces = list(ACTORS)
 
 searchActor = input('Insert an actor name: ')
@@ -88,12 +79,46 @@ elif searchActor == 'Anthony Hopkins' :
     
 elif searchActor == 'Jeremy Renner' :
     print(ACTORS['Jeremy Renner'])
+
+else : print(searchActor, ' is not valid')
     
+# Task 16
 
+
+def search ():
+    searchActor = input('Insert an actor name: ')
+    if searchActor in ACTORS :
+        print(ACTORS[searchActor])
+    else: print('write a valid input')
 
 
     
+# Task 17
 
+searchGender = input('Insert a genere: ')
+
+while searchGender == GENRES['comedy' or 'action' or 'adventures' or 'romantic' or 'drama' or 'thriller'] :
+
+ if searchGender == 'comedy' :
+    print(GENRES['comedy'])
+
+ elif searchGender == 'adventures':
+    print(GENRES['adventures'])
+    
+ elif searchGender == 'romantic':
+    print(GENRES['romantic'])
+
+ elif searchGender == 'drama' :
+    print(GENRES['drama'])
+
+ elif searchGender == 'thriller' :
+    print(GENRES['thriller'])
+    
+ elif searchGender == 'action' :
+    print(GENRES['action'])
+
+ else :
+    print('The genere is not valid', (GENRES))
     
 
 

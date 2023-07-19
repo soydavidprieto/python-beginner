@@ -1,2 +1,2 @@
-text = input ('Insert a text')
+text = input('Insert a text')
 print(text, 'has ', len(text), ' characters')

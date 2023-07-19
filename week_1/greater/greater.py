@@ -1,9 +1,8 @@
+a = int(input('Insert a number: '))
+b = int(input('inset another number: '))
 
-a = int (input('Insert a number: '))
-b = int (input('inset another number: '))
-
-if a > b :
+if a > b:
     print(a, " is greater than ", b)
-    
-else :  
+
+else:
     print(b, 'is greater than ', a)

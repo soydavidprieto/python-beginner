@@ -1,2 +1,2 @@
-words = input (' Type what you want')
-print(words)
+words = input(' Type what you want')
+print(words.split())

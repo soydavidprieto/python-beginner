@@ -1,3 +1,2 @@
-list = {1, 2, 3, 4, 5, 6}
-list.join(int[::3])
-print(list)
+listEach = (1, 2, 3, 4, 5, 6)
+print(listEach[::3])
