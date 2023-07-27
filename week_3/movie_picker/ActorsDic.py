@@ -1,18 +1,18 @@
 # (!) ACTORS storage does not exist anymore.
 ACTORS = {
-     'Robert De Niro': ['Meet the Parents'],
-     'Ben Stiller': ['Meet the Parents'],
-     'Adam Sandler': ['Anger Management'],
-     'Jack Nicholson': ['Anger Management'],
-     'Brendan Fraser': ['Mummy'],
-     'Rachel Weisz': ['Mummy'],
-     'Tom Cruise': ['Vanilla Sky', 'Mission Impossible'],
-     'Penelope Cruz': ['Vanilla Sky'],
-     'Cameron Diaz': ['Vanilla Sky'],
-     'Brad Pitt': ['Meet Joe Black'],
-     'Anthony Hopkins': ['Meet Joe Black'],
-     'Jeremy Renner': ['Mission Impossible']
- }
+    'Robert De Niro': ['Meet the Parents'],
+    'Ben Stiller': ['Meet the Parents'],
+    'Adam Sandler': ['Anger Management'],
+    'Jack Nicholson': ['Anger Management'],
+    'Brendan Fraser': ['Mummy'],
+    'Rachel Weisz': ['Mummy'],
+    'Tom Cruise': ['Vanilla Sky', 'Mission Impossible'],
+    'Penelope Cruz': ['Vanilla Sky'],
+    'Cameron Diaz': ['Vanilla Sky'],
+    'Brad Pitt': ['Meet Joe Black'],
+    'Anthony Hopkins': ['Meet Joe Black'],
+    'Jeremy Renner': ['Mission Impossible']
+}
 
 CAST = {
     'Meet the Parents': ['Robert De Niro', 'Ben Stiller'],
@@ -32,12 +32,13 @@ GENRES = {
     'action': ['Mission Impossible']
 }
 
-def search ():
+
+def search():
     print(ACTORS)
     searchActor = input('Insert an actor name: ')
-    if searchActor in ACTORS :
+    if searchActor in ACTORS:
         print(ACTORS[searchActor])
-        searchMovieInput= input('Insert a movie title: ')
+        searchMovieInput = input('Insert a movie title: ')
         movies = ACTORS[searchActor]
         if searchMovieInput in movies:
             print(searchMovieInput)
@@ -46,12 +47,13 @@ def search ():
     else:
         print('write a valid input')
 
-def searchGenere ():
+
+def searchGenere():
     print(GENRES)
     searchGenere = input('Insert an actor name: ')
-    if searchGenere in GENRES :
+    if searchGenere in GENRES:
         print(GENRES[searchGenere])
-        searchMovieGenere= input('Insert a movie title: ')
+        searchMovieGenere = input('Insert a movie title: ')
         movies = GENRES[searchGenere]
         if searchMovieGenere in GENRES:
             print(searchMovieGenere)
@@ -59,6 +61,7 @@ def searchGenere ():
             print("Movie don´t exist for that actor")
     else:
         print('write a valid input')
+
 
 search()
 searchGenere()

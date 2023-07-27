@@ -1,25 +1,35 @@
-GENRES = dict()
-GENRES['1'] = {'gender': 'comedy', 'title': 'Meet the Parents'}
-GENRES['2'] = {'gender': 'comedy', 'title': 'Anger Management'}
-GENRES['3'] = {'gender': 'adventures', 'title': 'Mummy'}
-GENRES['4'] = {'gender': 'romantic', 'tittle': 'Vanilla Sky'}
-GENRES['5'] = {'gender': 'romantic', 'title': 'Meet Joe Black'}
-GENRES['6'] = {'gender': 'drama', 'tittle': 'Meet Joe Black'}
-GENRES['7'] = {'gender': 'thriller', 'tittle': 'Vanilla Sky'}
-GENRES['8'] = {'gender': 'action', 'tittle': 'Mission Impossible'}
-
-result = dict()
+# (!) ACTORS storage does not exist anymore.
 
 
-# Task 18
-def search_data():
-    try:
-        key = raw = input('Please Input Search Criteria:')
-        for k, subdict in GENRES.items():
-            if key == subdict['gender']:
-                return k, subdict  # return key and the sub-dictionary
-    except TypeError:
-        print('Wrong data type proveided as an argument')
+CAST = {
+    'Meet the Parents': ['Robert De Niro', 'Ben Stiller'],
+    'Anger Management': ['Adam Sandler', 'Jack Nicholson'],
+    'Mummy': ['Brendan Fraser', 'Rachel Weisz'],
+    'Vanilla Sky': ['Tom Cruise', 'Penelope Cruz', 'Cameron Diaz'],
+    'Meet Joe Black': ['Brad Pitt', 'Anthony Hopkins'],
+    'Mission Impossible': ['Tom Cruise', 'Jeremy Renner']
+}
+
+GENRES = {
+    'comedy': ['Meet the Parents', 'Anger Management'],
+    'adventures': ['Mummy'],
+    'romantic': ['Vanilla Sky', 'Meet Joe Black'],
+    'drama': ['Meet Joe Black'],
+    'thriller': ['Vanilla Sky'],
+    'action': ['Mission Impossible']
+}
 
 
-print(search_data())
+def cast_to_actors(cast):
+    actors = {}
+    for key, value in cast.items():
+        for actor in value:
+            if actor in actors:
+                actors[actor].append(key)
+            else:
+                actors[actor] = [key]
+    return actors
+
+
+result = cast_to_actors(cast=CAST)
+print(result)
